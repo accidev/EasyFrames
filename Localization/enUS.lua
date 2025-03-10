@@ -71,12 +71,12 @@ L["By default all formulas use divider (for value eq 1000 and more is 1000, for 
     "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
     "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
     "Use these formulas for Chinese numerals:\n" ..
-    "Value greater than 1000 -> '%.2f万', and '%.2f萬' for zhTW.\n" ..
-    "Value greater than 100 000 -> '%.1f万', and '%.1f萬' for zhTW.\n" ..
-    "Value greater than 1 000 000 -> '%.1f万', and '%.1f萬' for zhTW.\n" ..
-    "Value greater than 10 000 000 -> '%.0f万', and '%.0f萬' for zhTW.\n" ..
-    "Value greater than 100 000 000 -> '%.2f亿', and '%.2f億' for zhTW.\n" ..
-    "Value greater than 1 000 000 000 -> '%.2f亿', and '%.2f億' for zhTW.\n\n" ..
+    "Value greater than 1000 -> '%.2f万'.\n" ..
+    "Value greater than 100 000 -> '%.1f万'.\n" ..
+    "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+    "Value greater than 10 000 000 -> '%.0f万'.\n" ..
+    "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
+    "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
     "More information about Chinese numerals format you can read on project site"] = true
 
 L["Custom format of mana"] = true

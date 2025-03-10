@@ -28,7 +28,6 @@ local LOCALE_MASK = 0
 lib.LOCALE_BIT_koKR		= 1
 lib.LOCALE_BIT_ruRU		= 2
 lib.LOCALE_BIT_zhCN		= 4
-lib.LOCALE_BIT_zhTW		= 8
 lib.LOCALE_BIT_western	= 128
 
 local CallbackHandler = LibStub:GetLibrary("CallbackHandler-1.0")
@@ -105,16 +104,6 @@ elseif locale == "zhCN" then
 --
 	lib.DefaultMedia["font"] = "默认" -- someone from zhCN please adjust if needed
 --
-elseif locale == "zhTW" then
-	LOCALE_MASK = lib.LOCALE_BIT_zhTW
---
-	SML_MT_font["提示訊息"]		= [[Fonts\bHEI00M.ttf]]
-	SML_MT_font["聊天"]			= [[Fonts\bHEI01B.ttf]]
-	SML_MT_font["傷害數字"]		= [[Fonts\bKAI00M.ttf]]
-	SML_MT_font["預設"]			= [[Fonts\bLEI00D.ttf]]
---
-	lib.DefaultMedia["font"] = "預設" -- someone from zhTW please adjust if needed
-
 elseif locale == "ruRU" then
 	LOCALE_MASK = lib.LOCALE_BIT_ruRU
 --
