@@ -24,8 +24,6 @@ Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
 
 Localization\enUS.lua
 Localization\ruRU.lua
-Localization\deDE.lua
-
 
 EasyFrames.lua
 
