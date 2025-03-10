@@ -387,7 +387,7 @@ function EasyFrames:OnProfileChanged(event, database, newProfileKey)
     end
 end
 
-EasyFrames.Utils = {}
+EasyFrames.Utils = {};
 function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFormat, customHealthFormatFormulas,
     useHealthFormatFullValues, useChineseNumeralsHealthFormat)
     local unit = frame.unit
@@ -416,7 +416,7 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
             local Result = string.gsub(string.gsub(string.gsub(customHealthFormat, "%%PERCENT%%",
                 string.format("%.0f", HealthPercent)), "%%MAX%%", HealthMax), "%%CURRENT%%", Health)
 
-            healthbar.TextString:SetText(Result)
+            healthbar.TextString:SetText(Result);
         end
     elseif (healthFormat == "1") then
         -- Percent
@@ -433,7 +433,7 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
             local Health = UnitHealth(unit)
             local HealthMax = UnitHealthMax(unit)
 
-            healthbar.TextString:SetText(ReadableNumber(Health) .. " / " .. ReadableNumber(HealthMax))
+            healthbar.TextString:SetText(ReadableNumber(Health) .. " / " .. ReadableNumber(HealthMax));
         end
 
     elseif (healthFormat == "3") then
@@ -445,7 +445,7 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
             local HealthPercent = (UnitHealth(unit) / UnitHealthMax(unit)) * 100
 
             healthbar.TextString:SetText(ReadableNumber(Health) .. " / " .. ReadableNumber(HealthMax) .. " (" ..
-                                             string.format("%.0f", HealthPercent) .. "%)")
+                                             string.format("%.0f", HealthPercent) .. "%)");
         end
 
     elseif (healthFormat == "4") then
@@ -455,7 +455,7 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
             local Health = UnitHealth(unit)
             local HealthPercent = (UnitHealth(unit) / UnitHealthMax(unit)) * 100
 
-            healthbar.TextString:SetText(ReadableNumber(Health) .. " (" .. string.format("%.0f", HealthPercent) .. "%)")
+            healthbar.TextString:SetText(ReadableNumber(Health) .. " (" .. string.format("%.0f", HealthPercent) .. "%)");
         end
     end
 end
@@ -515,7 +515,7 @@ function EasyFrames.Utils.UpdateManaValues(frame, manaFormat, customManaFormat, 
             local Result = string.gsub(string.gsub(string.gsub(customManaFormat, "%%PERCENT%%",
                 string.format("%.0f", ManaPercent)), "%%MAX%%", ManaMax), "%%CURRENT%%", Mana)
 
-            manabar.TextString:SetText(Result)
+            manabar.TextString:SetText(Result);
         end
 
     end
@@ -571,7 +571,6 @@ function EasyFrames.Utils.ClassPortraits(frame)
     if not frame.portrait then
         return
     end
-
     if UnitIsPlayer(frame.unit) then
         local _, class = UnitClass(frame.unit)
         if class then
@@ -599,7 +598,7 @@ function EasyFrames.Utils.DefaultPortraits(frame)
     frame.portrait:SetTexCoord(0, 1, 0, 1)
 end
 
-EasyFrames.Helpers = {}
+EasyFrames.Helpers = {};
 function EasyFrames.Helpers.Iterator(object)
     local iterator = function(callback)
         for _, value in pairs(object) do
