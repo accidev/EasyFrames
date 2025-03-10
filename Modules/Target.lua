@@ -1,5 +1,3 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
@@ -18,7 +16,6 @@ local OnShowHookScript = function(frame)
     frame:Hide()
 end
 
-
 function Target:OnInitialize()
     self.db = EasyFrames.db
     db = self.db.profile
@@ -33,13 +30,13 @@ function Target:OnEnable()
     self:SetHealthBarsFont()
     self:SetManaBarsFont()
 
-    --self:ReverseDirectionLosingHP(db.target.reverseDirectionLosingHP)
+    -- self:ReverseDirectionLosingHP(db.target.reverseDirectionLosingHP)
 
     self:ShowAttackBackground(db.target.showAttackBackground)
     self:SetAttackBackgroundOpacity(db.target.attackBackgroundOpacity)
     self:ShowPVPIcon(db.target.showPVPIcon)
 
-    --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    -- self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
     self:SecureHook("TextStatusBar_UpdateTextString", "UpdateTextStringWithValues")
     self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
 end
@@ -57,7 +54,7 @@ function Target:OnProfileChanged(newDB)
     self:SetHealthBarsFont()
     self:SetManaBarsFont()
 
-    --self:ReverseDirectionLosingHP(db.target.reverseDirectionLosingHP)
+    -- self:ReverseDirectionLosingHP(db.target.reverseDirectionLosingHP)
 
     self:ShowAttackBackground(db.target.showAttackBackground)
     self:SetAttackBackgroundOpacity(db.target.attackBackgroundOpacity)
@@ -66,7 +63,6 @@ function Target:OnProfileChanged(newDB)
     self:UpdateTextStringWithValues()
     self:UpdateTextStringWithValues(TargetFrameManaBar)
 end
-
 
 function Target:SetScale(value)
     TargetFrame:SetScale(value)
@@ -87,23 +83,13 @@ function Target:UpdateTextStringWithValues(statusBar)
 
     if (frame.unit == "target") then
         if (frame == TargetFrameHealthBar) then
-            UpdateHealthValues(
-                frame,
-                db.target.healthFormat,
-                db.target.customHealthFormat,
-                db.target.customHealthFormatFormulas,
-                db.target.useHealthFormatFullValues,
-                db.target.useChineseNumeralsHealthFormat
-            )
+            UpdateHealthValues(frame, db.target.healthFormat, db.target.customHealthFormat,
+                db.target.customHealthFormatFormulas, db.target.useHealthFormatFullValues,
+                db.target.useChineseNumeralsHealthFormat)
         elseif (frame == TargetFrameManaBar) then
-            UpdateManaValues(
-                frame,
-                db.target.manaFormat,
-                db.target.customManaFormat,
-                db.target.customManaFormatFormulas,
-                db.target.useManaFormatFullValues,
-                db.target.useChineseNumeralsManaFormat
-            )
+            UpdateManaValues(frame, db.target.manaFormat, db.target.customManaFormat,
+                db.target.customManaFormatFormulas, db.target.useManaFormatFullValues,
+                db.target.useChineseNumeralsManaFormat)
         end
     end
 end
@@ -129,12 +115,8 @@ end
 function Target:ShowNameInsideFrame(value)
     local Core = EasyFrames:GetModule("Core")
 
-    local HealthBarTexts = {
-        TargetFrameHealthBar.RightText,
-        TargetFrameHealthBar.LeftText,
-        TargetFrameHealthBar.TextString,
-        TargetFrameTextureFrameDeadText
-    }
+    local HealthBarTexts = {TargetFrameHealthBar.RightText, TargetFrameHealthBar.LeftText,
+                            TargetFrameHealthBar.TextString, TargetFrameTextureFrameDeadText}
 
     for _, healthBar in pairs(HealthBarTexts) do
         local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
@@ -190,7 +172,7 @@ function Target:ReverseDirectionLosingHP(value)
     TargetFrameHealthBar:SetReverseFill(value)
     TargetFrameManaBar:SetReverseFill(value)
 end
-]]--
+]] --
 
 function Target:ShowAttackBackground(value)
     local frame = TargetFrameFlash
@@ -215,11 +197,8 @@ function Target:SetAttackBackgroundOpacity(value)
 end
 
 function Target:ShowPVPIcon(value)
-    for _, frame in pairs({
-        TargetFrameTextureFramePVPIcon,
-        TargetFrameTextureFramePrestigeBadge,
-        TargetFrameTextureFramePrestigePortrait,
-    }) do
+    for _, frame in pairs({TargetFrameTextureFramePVPIcon, TargetFrameTextureFramePrestigeBadge,
+                           TargetFrameTextureFramePrestigePortrait}) do
         if frame then
             self:Unhook(frame, "Show")
 

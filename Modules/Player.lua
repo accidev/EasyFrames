@@ -1,5 +1,3 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
@@ -24,7 +22,6 @@ local OnSetTextHookScript = function(frame, text, flag)
     end
 end
 
-
 function Player:OnInitialize()
     self.db = EasyFrames.db
     db = self.db.profile
@@ -48,7 +45,7 @@ function Player:OnEnable()
     self:ShowRoleIcon(db.player.showRoleIcon)
     self:ShowPVPIcon(db.player.showPVPIcon)
 
-    --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    -- self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
     self:SecureHook("TextStatusBar_UpdateTextString", "UpdateTextStringWithValues")
     self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
 end
@@ -77,7 +74,6 @@ function Player:OnProfileChanged(newDB)
     self:UpdateTextStringWithValues()
     self:UpdateTextStringWithValues(PlayerFrameManaBar)
 end
-
 
 function Player:SetScale(value)
     PlayerFrame:SetScale(value)
@@ -112,11 +108,8 @@ end
 function Player:ShowNameInsideFrame(value)
     local Core = EasyFrames:GetModule("Core")
 
-    local HealthBarTexts = {
-        PlayerFrameHealthBar.RightText,
-        PlayerFrameHealthBar.LeftText,
-        PlayerFrameHealthBar.TextString
-    }
+    local HealthBarTexts = {PlayerFrameHealthBar.RightText, PlayerFrameHealthBar.LeftText,
+                            PlayerFrameHealthBar.TextString}
 
     for _, healthBar in pairs(HealthBarTexts) do
         local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
@@ -152,14 +145,14 @@ function Player:ShowSpecialbar(value)
     end
 
     local _, englishClass = UnitClass("player")
-    --local playerSpec = GetSpecialization()
+    -- local playerSpec = GetSpecialization()
     local frame
 
     if (englishClass == "SHAMAN") then
         frame = TotemFrame
     elseif (englishClass == "DEATHKNIGHT") then
         frame = RuneFrame
-    --[[
+        --[[
     elseif (englishClass == "MAGE" and playerSpec == SPEC_MAGE_ARCANE) then
         frame = MageArcaneChargesFrame
     elseif (englishClass == "MONK" ) then
@@ -170,11 +163,11 @@ function Player:ShowSpecialbar(value)
         end
     elseif (englishClass == "PALADIN" and playerSpec == SPEC_PALADIN_RETRIBUTION) then
         frame = PaladinPowerBarFrame
-    ]]--
+    ]] --
     elseif (englishClass == "ROGUE") then
         frame = ComboPointPlayerFrame
-    --elseif (englishClass == "WARLOCK") then
-    --    frame = WarlockPowerFrame
+        -- elseif (englishClass == "WARLOCK") then
+        --    frame = WarlockPowerFrame
     end
 
     if (frame) then
@@ -195,23 +188,13 @@ function Player:UpdateTextStringWithValues(statusBar)
 
     if (frame.unit == "player") then
         if (frame == PlayerFrameHealthBar) then
-            UpdateHealthValues(
-                frame,
-                db.player.healthFormat,
-                db.player.customHealthFormat,
-                db.player.customHealthFormatFormulas,
-                db.player.useHealthFormatFullValues,
-                db.player.useChineseNumeralsHealthFormat
-            )
+            UpdateHealthValues(frame, db.player.healthFormat, db.player.customHealthFormat,
+                db.player.customHealthFormatFormulas, db.player.useHealthFormatFullValues,
+                db.player.useChineseNumeralsHealthFormat)
         elseif (frame == PlayerFrameManaBar) then
-            UpdateManaValues(
-                frame,
-                db.player.manaFormat,
-                db.player.customManaFormat,
-                db.player.customManaFormatFormulas,
-                db.player.useManaFormatFullValues,
-                db.player.useChineseNumeralsManaFormat
-            )
+            UpdateManaValues(frame, db.player.manaFormat, db.player.customManaFormat,
+                db.player.customManaFormatFormulas, db.player.useManaFormatFullValues,
+                db.player.useChineseNumeralsManaFormat)
         end
     end
 end
@@ -251,10 +234,7 @@ function Player:ResetFrameNameColor()
 end
 
 function Player:ShowRestIcon(value)
-    for _, frame in pairs({
-        PlayerRestGlow,
-        PlayerRestIcon,
-    }) do
+    for _, frame in pairs({PlayerRestGlow, PlayerRestIcon}) do
         if frame then
             self:Unhook(frame, "Show")
 
@@ -272,10 +252,7 @@ function Player:ShowRestIcon(value)
 end
 
 function Player:ShowStatusTexture(value)
-    for _, frame in pairs({
-        PlayerStatusGlow,
-        PlayerStatusTexture,
-    }) do
+    for _, frame in pairs({PlayerStatusGlow, PlayerStatusTexture}) do
         if frame then
             self:Unhook(frame, "Show")
 
@@ -292,13 +269,8 @@ function Player:ShowStatusTexture(value)
     end
 end
 
-
 function Player:ShowAttackBackground(value)
-    for _, frame in pairs({
-        PlayerAttackGlow,
-        PlayerAttackBackground,
-        PlayerFrameFlash,
-    }) do
+    for _, frame in pairs({PlayerAttackGlow, PlayerAttackBackground, PlayerFrameFlash}) do
         if frame then
             self:Unhook(frame, "Show")
 
@@ -326,9 +298,9 @@ function Player:ShowGroupIndicator(value)
         self:Unhook(frame, "Show")
 
         if (value) then
-            --if (IsInRaid("player")) then
-            if (GetNumRaidMembers()>0) then
-                
+            -- if (IsInRaid("player")) then
+            if (GetNumRaidMembers() > 0) then
+
                 frame:Show()
             end
         else
@@ -345,8 +317,8 @@ function Player:ShowRoleIcon(value)
         self:Unhook(frame, "Show")
 
         if (value) then
-            --if (IsInGroup("player")) then
-            if (GetNumPartyMembers()>0) then
+            -- if (IsInGroup("player")) then
+            if (GetNumPartyMembers() > 0) then
                 frame:Show()
             end
         else
@@ -358,12 +330,7 @@ function Player:ShowRoleIcon(value)
 end
 
 function Player:ShowPVPIcon(value)
-    for _, frame in pairs({
-        PlayerPVPIcon,
-        PlayerPVPTimerText,
-        PlayerPrestigeBadge,
-        PlayerPrestigePortrait,
-    }) do
+    for _, frame in pairs({PlayerPVPIcon, PlayerPVPTimerText, PlayerPrestigeBadge, PlayerPrestigePortrait}) do
         if frame then
             self:Unhook(frame, "Show")
 

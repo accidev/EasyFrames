@@ -1,5 +1,3 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
@@ -25,11 +23,11 @@ function Party:OnEnable()
     self:SetFrameNameColor()
     self:SetHealthBarsFont()
     self:SetManaBarsFont()
---    self:ShowPetFrames(db.party.showPetFrames)
+    --    self:ShowPetFrames(db.party.showPetFrames)
 
     self:SecureHook("PartyMemberFrame_OnEvent", "PartyFrame_UpdateAuras")
     self:SecureHook("TextStatusBar_UpdateTextString", "UpdateTextStringWithValues")
-    --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    -- self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
 end
 
 function Party:OnProfileChanged(newDB)
@@ -42,7 +40,7 @@ function Party:OnProfileChanged(newDB)
     self:SetFrameNameColor()
     self:SetHealthBarsFont()
     self:SetManaBarsFont()
---    self:ShowPetFrames(db.party.showPetFrames)
+    --    self:ShowPetFrames(db.party.showPetFrames)
 
     self:UpdateTextStringWithValues()
     self:UpdateTextStringWithValues(PartyMemberFrame1ManaBar)
@@ -59,23 +57,12 @@ function Party:UpdateTextStringWithValues(statusBar)
 
     if (frame.unit == "party1" or frame.unit == "party2" or frame.unit == "party3" or frame.unit == "party4") then
         if (string.find(frame:GetName(), 'HealthBar')) then
-            UpdateHealthValues(
-                frame,
-                db.party.healthFormat,
-                db.party.customHealthFormat,
-                db.party.customHealthFormatFormulas,
-                db.party.useHealthFormatFullValues,
-                db.party.useChineseNumeralsHealthFormat
-            )
+            UpdateHealthValues(frame, db.party.healthFormat, db.party.customHealthFormat,
+                db.party.customHealthFormatFormulas, db.party.useHealthFormatFullValues,
+                db.party.useChineseNumeralsHealthFormat)
         elseif (string.find(frame:GetName(), 'ManaBar')) then
-            UpdateManaValues(
-                frame,
-                db.party.manaFormat,
-                db.party.customManaFormat,
-                db.party.customManaFormatFormulas,
-                db.party.useManaFormatFullValues,
-                db.party.useChineseNumeralsManaFormat
-            )
+            UpdateManaValues(frame, db.party.manaFormat, db.party.customManaFormat, db.party.customManaFormatFormulas,
+                db.party.useManaFormatFullValues, db.party.useChineseNumeralsManaFormat)
         end
     end
 end

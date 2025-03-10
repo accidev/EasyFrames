@@ -1,5 +1,3 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
@@ -30,7 +28,7 @@ function Boss:OnEnable()
     self:ShowThreatIndicator()
 
     self:SecureHook("TextStatusBar_UpdateTextString", "UpdateTextStringWithValues")
-    --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    -- self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
 end
 
 function Boss:OnProfileChanged(newDB)
@@ -63,25 +61,15 @@ end
 function Boss:UpdateTextStringWithValues(statusBar)
     local frame = statusBar or Boss1TargetFrameHealthBar
 
-    if (frame.unit == "boss1" or frame.unit == "boss2" or frame.unit == "boss3" or frame.unit == "boss4" or frame.unit == "boss5") then
+    if (frame.unit == "boss1" or frame.unit == "boss2" or frame.unit == "boss3" or frame.unit == "boss4" or frame.unit ==
+        "boss5") then
         if (string.find(frame:GetName(), 'HealthBar')) then
-            UpdateHealthValues(
-                frame,
-                db.boss.healthFormat,
-                db.boss.customHealthFormat,
-                db.boss.customHealthFormatFormulas,
-                db.boss.useHealthFormatFullValues,
-                db.boss.useChineseNumeralsHealthFormat
-            )
+            UpdateHealthValues(frame, db.boss.healthFormat, db.boss.customHealthFormat,
+                db.boss.customHealthFormatFormulas, db.boss.useHealthFormatFullValues,
+                db.boss.useChineseNumeralsHealthFormat)
         elseif (string.find(frame:GetName(), 'ManaBar')) then
-            UpdateManaValues(
-                frame,
-                db.boss.manaFormat,
-                db.boss.customManaFormat,
-                db.boss.customManaFormatFormulas,
-                db.boss.useManaFormatFullValues,
-                db.boss.useChineseNumeralsManaFormat
-            )
+            UpdateManaValues(frame, db.boss.manaFormat, db.boss.customManaFormat, db.boss.customManaFormatFormulas,
+                db.boss.useManaFormatFullValues, db.boss.useChineseNumeralsManaFormat)
         end
     end
 end
@@ -102,22 +90,21 @@ function Boss:ShowNameInsideFrame(value)
     local Core = EasyFrames:GetModule("Core")
 
     BossIterator(function(frame)
-        local HealthBarTexts = {
-            frame.healthbar.RightText,
-            frame.healthbar.LeftText,
-            frame.healthbar.TextString,
-        }
+        local HealthBarTexts = {frame.healthbar.RightText, frame.healthbar.LeftText, frame.healthbar.TextString}
 
         for _, healthBar in pairs(HealthBarTexts) do
             local namePoint, nameRelativeTo, nameRelativePoint, nameXOffset, nameYOffset = frame.name:GetPoint()
-            local healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, healthBarYOffset = healthBar:GetPoint()
+            local healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, healthBarYOffset =
+                healthBar:GetPoint()
 
             if (value and db.boss.showName) then
                 Core:MoveRegion(frame.name, namePoint, nameRelativeTo, nameRelativePoint, nameXOffset, 20)
-                Core:MoveRegion(healthBar, healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, healthBarYOffset - 4)
+                Core:MoveRegion(healthBar, healthBarPoint, healthBarRelativeTo, healthBarRelativePoint,
+                    healthBarXOffset, healthBarYOffset - 4)
             else
                 Core:MoveRegion(frame.name, namePoint, nameRelativeTo, nameRelativePoint, nameXOffset, 39)
-                Core:MoveRegion(healthBar, healthBarPoint, healthBarRelativeTo, healthBarRelativePoint, healthBarXOffset, 12)
+                Core:MoveRegion(healthBar, healthBarPoint, healthBarRelativeTo, healthBarRelativePoint,
+                    healthBarXOffset, 12)
             end
         end
     end)
@@ -166,7 +153,7 @@ function Boss:SetFrameNameColor()
 end
 
 function Boss:ResetFrameNameColor()
-    EasyFrames.db.profile.boss.bossNameColor = { unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR) }
+    EasyFrames.db.profile.boss.bossNameColor = {unpack(EasyFrames.Const.DEFAULT_FRAMES_NAME_COLOR)}
 end
 
 function Boss:ShowThreatIndicator()

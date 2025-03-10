@@ -1,5 +1,3 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
@@ -17,7 +15,6 @@ local DefaultPortraits = EasyFrames.Utils.DefaultPortraits
 local OnShowHookScript = function(frame)
     frame:Hide()
 end
-
 
 function Focus:OnInitialize()
     self.db = EasyFrames.db
@@ -39,7 +36,7 @@ function Focus:OnEnable()
     self:SetAttackBackgroundOpacity(db.focus.attackBackgroundOpacity)
     self:ShowPVPIcon(db.focus.showPVPIcon)
 
-    --self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
+    -- self:SecureHook("TextStatusBar_UpdateTextStringWithValues", "UpdateTextStringWithValues")
     self:SecureHook("TextStatusBar_UpdateTextString", "UpdateTextStringWithValues")
     self:SecureHook("UnitFramePortrait_Update", "MakeClassPortraits")
 end
@@ -67,7 +64,6 @@ function Focus:OnProfileChanged(newDB)
     self:UpdateTextStringWithValues(FocusFrameManaBar)
 end
 
-
 function Focus:SetScale(value)
     FocusFrame:SetScale(value)
 end
@@ -87,23 +83,12 @@ function Focus:UpdateTextStringWithValues(statusBar)
 
     if (frame.unit == "focus") then
         if (frame == FocusFrameHealthBar) then
-            UpdateHealthValues(
-                frame,
-                db.focus.healthFormat,
-                db.focus.customHealthFormat,
-                db.focus.customHealthFormatFormulas,
-                db.focus.useHealthFormatFullValues,
-                db.focus.useChineseNumeralsHealthFormat
-            )
+            UpdateHealthValues(frame, db.focus.healthFormat, db.focus.customHealthFormat,
+                db.focus.customHealthFormatFormulas, db.focus.useHealthFormatFullValues,
+                db.focus.useChineseNumeralsHealthFormat)
         elseif (frame == FocusFrameManaBar) then
-            UpdateManaValues(
-                frame,
-                db.focus.manaFormat,
-                db.focus.customManaFormat,
-                db.focus.customManaFormatFormulas,
-                db.focus.useManaFormatFullValues,
-                db.focus.useChineseNumeralsManaFormat
-            )
+            UpdateManaValues(frame, db.focus.manaFormat, db.focus.customManaFormat, db.focus.customManaFormatFormulas,
+                db.focus.useManaFormatFullValues, db.focus.useChineseNumeralsManaFormat)
         end
     end
 end
@@ -129,12 +114,8 @@ end
 function Focus:ShowNameInsideFrame(value)
     local Core = EasyFrames:GetModule("Core")
 
-    local HealthBarTexts = {
-        FocusFrameHealthBar.RightText,
-        FocusFrameHealthBar.LeftText,
-        FocusFrameHealthBar.TextString,
-        FocusFrameTextureFrameDeadText
-    }
+    local HealthBarTexts = {FocusFrameHealthBar.RightText, FocusFrameHealthBar.LeftText, FocusFrameHealthBar.TextString,
+                            FocusFrameTextureFrameDeadText}
 
     for _, healthBar in pairs(HealthBarTexts) do
         local point, relativeTo, relativePoint, xOffset, yOffset = healthBar:GetPoint()
@@ -186,8 +167,8 @@ function Focus:ResetFrameNameColor()
 end
 
 function Focus:ReverseDirectionLosingHP(value)
-    --FocusFrameHealthBar:SetReverseFill(value)
-    --FocusFrameManaBar:SetReverseFill(value)
+    -- FocusFrameHealthBar:SetReverseFill(value)
+    -- FocusFrameManaBar:SetReverseFill(value)
 end
 
 function Focus:ShowAttackBackground(value)
@@ -213,11 +194,8 @@ function Focus:SetAttackBackgroundOpacity(value)
 end
 
 function Focus:ShowPVPIcon(value)
-    for _, frame in pairs({
-        FocusFrameTextureFramePVPIcon,
-        FocusFrameTextureFramePrestigeBadge,
-        FocusFrameTextureFramePrestigePortrait,
-    }) do
+    for _, frame in pairs({FocusFrameTextureFramePVPIcon, FocusFrameTextureFramePrestigeBadge,
+                           FocusFrameTextureFramePrestigePortrait}) do
         if frame then
             self:Unhook(frame, "Show")
 

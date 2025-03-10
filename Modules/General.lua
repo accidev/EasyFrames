@@ -1,5 +1,3 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
@@ -20,7 +18,6 @@ local BossIterator = EasyFrames.Helpers.Iterator(EasyFrames.Utils.GetBossFrames(
 local DEFAULT_BUFF_SIZE = 17
 
 local registeredCombatEvent = false
-
 
 local function ClassColored(statusbar, unit)
     if (db.general.colorBasedOnCurrentHealth) then
@@ -74,35 +71,34 @@ local function ClassColored(statusbar, unit)
         end
     else
 
-    -- non player
+        -- non player
 
-    local colors
-    local red, green, _ = UnitSelectionColor(unit)
+        local colors
+        local red, green, _ = UnitSelectionColor(unit)
 
-    if (red == 0) then
-        colors = db.general.friendlyFrameDefaultColors
-    elseif (green == 0) then
-        colors = db.general.enemyFrameDefaultColors
-    else
-        colors = db.general.neutralFrameDefaultColors
-    end
-
-    --if (not UnitPlayerControlled(unit) and UnitIsTapDenied(unit)) then
-    --UnitIsTappedByPlayer
-    --UnitIsTappedByPlayer("target")
-    --if (not UnitPlayerControlled(unit) and UnitIsTapped(unit)) then
-    
-    if (not UnitPlayerControlled(unit)) then
-        if (UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit)) then
-            colors = {0.5, 0.5, 0.5}
+        if (red == 0) then
+            colors = db.general.friendlyFrameDefaultColors
+        elseif (green == 0) then
+            colors = db.general.enemyFrameDefaultColors
+        else
+            colors = db.general.neutralFrameDefaultColors
         end
-    end
 
-    statusbar:SetStatusBarColor(colors[1], colors[2], colors[3])
+        -- if (not UnitPlayerControlled(unit) and UnitIsTapDenied(unit)) then
+        -- UnitIsTappedByPlayer
+        -- UnitIsTappedByPlayer("target")
+        -- if (not UnitPlayerControlled(unit) and UnitIsTapped(unit)) then
+
+        if (not UnitPlayerControlled(unit)) then
+            if (UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit)) then
+                colors = {0.5, 0.5, 0.5}
+            end
+        end
+
+        statusbar:SetStatusBarColor(colors[1], colors[2], colors[3])
 
     end
 end
-
 
 function General:OnInitialize()
     self.db = EasyFrames.db
@@ -112,7 +108,7 @@ end
 function General:OnEnable()
 
     self:SetLightTexture(db.general.lightTexture)
-    
+
     self:SecureHook("UnitFrameHealthBar_Update", "MakeFramesColored")
     self:SecureHook("HealthBar_OnValueChanged", function(statusbar)
         self:MakeFramesColored(statusbar, statusbar.unit)
@@ -159,7 +155,6 @@ function General:OnProfileChanged(newDB)
     self:SetMaxDebuffCount(db.general.maxDebuffCount)
 end
 
-
 function General:ResetFriendlyFrameDefaultColors()
     EasyFrames.db.profile.general.friendlyFrameDefaultColors = {0, 1, 0}
 end
@@ -172,8 +167,6 @@ function General:ResetNeutralFrameDefaultColors()
     EasyFrames.db.profile.general.neutralFrameDefaultColors = {1, 1, 0}
 end
 
-
-
 function General:SetFramesColored()
     local healthBars = GetFramesHealthBar()
 
@@ -185,8 +178,8 @@ function General:SetFramesColored()
 end
 
 function General:MakeFramesColored(statusbar, unit)
-    if ( not statusbar or statusbar.lockValues ) then
-        return;
+    if (not statusbar or statusbar.lockValues) then
+        return
     end
 
     if (unit) then
@@ -239,7 +232,6 @@ function General:HideFramesOutOfCombat(forceShow)
     end
 end
 
-
 function General:SetFrameBarTexture(value)
     local texture = Media:Fetch("statusbar", value)
 
@@ -249,8 +241,8 @@ function General:SetFrameBarTexture(value)
     for _, healthbar in pairs(healthBars) do
         healthbar:SetStatusBarTexture(texture)
     end
-    
-    --PlayerFrameHealthBar.AnimatedLossBar:SetStatusBarTexture(texture) -- fix for blinking red texture
+
+    -- PlayerFrameHealthBar.AnimatedLossBar:SetStatusBarTexture(texture) -- fix for blinking red texture
 
     for _, manabar in pairs(manaBars) do
         manabar:SetStatusBarTexture(texture)
@@ -265,7 +257,7 @@ function General:SetFrameBarTexture(value)
 
         PlayerFrameManaBar.EasyFramesTexture = texture
 
-        if(not PlayerFrameManaBar.EasyFramesHookUpdateType) then
+        if (not PlayerFrameManaBar.EasyFramesHookUpdateType) then
             hooksecurefunc("UnitFrameManaBar_UpdateType", manaBarTextureSetter)
 
             PlayerFrameManaBar.EasyFramesHookUpdateType = true
@@ -273,16 +265,16 @@ function General:SetFrameBarTexture(value)
     end
 end
 
-
 function General:SetBrightFramesBorder(value)
-    for _, t in pairs({
-        PlayerFrameTexture, PlayerFrameAlternateManaBarBorder, PlayerFrameAlternateManaBarRightBorder, PlayerFrameAlternateManaBarLeftBorder,
-        TargetFrameTextureFrameTexture, TargetFrameToTTextureFrameTexture,
-        PetFrameTexture, FocusFrameTextureFrameTexture, FocusFrameToTTextureFrameTexture,
-        PartyMemberFrame1Texture, PartyMemberFrame2Texture, PartyMemberFrame3Texture, PartyMemberFrame4Texture,
-        PartyMemberFrame1PetFrameTexture, PartyMemberFrame2PetFrameTexture, PartyMemberFrame3PetFrameTexture, PartyMemberFrame4PetFrameTexture,
-        Boss1TargetFrameTextureFrameTexture, Boss2TargetFrameTextureFrameTexture, Boss3TargetFrameTextureFrameTexture, Boss4TargetFrameTextureFrameTexture, Boss5TargetFrameTextureFrameTexture
-    }) do
+    for _, t in pairs({PlayerFrameTexture, PlayerFrameAlternateManaBarBorder, PlayerFrameAlternateManaBarRightBorder,
+                       PlayerFrameAlternateManaBarLeftBorder, TargetFrameTextureFrameTexture,
+                       TargetFrameToTTextureFrameTexture, PetFrameTexture, FocusFrameTextureFrameTexture,
+                       FocusFrameToTTextureFrameTexture, PartyMemberFrame1Texture, PartyMemberFrame2Texture,
+                       PartyMemberFrame3Texture, PartyMemberFrame4Texture, PartyMemberFrame1PetFrameTexture,
+                       PartyMemberFrame2PetFrameTexture, PartyMemberFrame3PetFrameTexture,
+                       PartyMemberFrame4PetFrameTexture, Boss1TargetFrameTextureFrameTexture,
+                       Boss2TargetFrameTextureFrameTexture, Boss3TargetFrameTextureFrameTexture,
+                       Boss4TargetFrameTextureFrameTexture, Boss5TargetFrameTextureFrameTexture}) do
         t:SetVertexColor(value, value, value)
     end
 end
@@ -293,10 +285,7 @@ function General:SetTexture()
     PlayerStatusTexture:SetTexture(Media:Fetch("misc", "player-status"))
 
     -- Target, Focus
-    local targetFrames = {
-        TargetFrame,
-        FocusFrame,
-    }
+    local targetFrames = {TargetFrame, FocusFrame}
 
     for _, frame in pairs(targetFrames) do
         EasyFrames:GetModule("Core"):CheckClassification(frame)
@@ -315,7 +304,7 @@ function General:SetTexture()
     PartyIterator(function(frame)
         _G[frame:GetName() .. "Texture"]:SetTexture(Media:Fetch("frames", "smalltarget"))
 
---        _G[frame:GetName() .. "PetFrameTexture"]:SetTexture(Media:Fetch("frames", "smalltarget"))
+        --        _G[frame:GetName() .. "PetFrameTexture"]:SetTexture(Media:Fetch("frames", "smalltarget"))
     end)
 
     -- Boss
@@ -340,10 +329,7 @@ end
 
 function General:SetCustomBuffSize(value)
 
-    local frames = {
-        TargetFrame,
-        FocusFrame
-    }
+    local frames = {TargetFrame, FocusFrame}
 
     for _, frame in pairs(frames) do
         local LARGE_AURA_SIZE = db.general.selfBuffSize
@@ -356,13 +342,13 @@ function General:SetCustomBuffSize(value)
         local _
         local selfName = frame:GetName()
 
---        if (frame.unit == 'target') then
---            buffSize = DEFAULT_BUFF_SIZE * db.target.scaleFrame
---        end
+        --        if (frame.unit == 'target') then
+        --            buffSize = DEFAULT_BUFF_SIZE * db.target.scaleFrame
+        --        end
 
---        if (frame.unit == 'focus') then
---            buffSize = DEFAULT_BUFF_SIZE * db.focus.scaleFrame
---        end
+        --        if (frame.unit == 'focus') then
+        --            buffSize = DEFAULT_BUFF_SIZE * db.focus.scaleFrame
+        --        end
 
         for i = 1, MAX_TARGET_BUFFS do
             _, icon, _, _, _, _, caster = UnitBuff(frame.unit, i)
@@ -384,7 +370,8 @@ function General:SetCustomBuffSize(value)
     end
 end
 
-function General:MakeCustomBuffSize(frame, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)
+function General:MakeCustomBuffSize(frame, auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth,
+    offsetX, mirrorAurasVertically)
     if (db.general.customBuffSize) then
         local AURA_OFFSET = 3
         local LARGE_AURA_SIZE = db.general.selfBuffSize
@@ -406,15 +393,16 @@ function General:MakeCustomBuffSize(frame, auraName, numAuras, numOppositeAuras,
 
             if (i == 1) then
                 rowWidth = size
---                frame.auraRows = frame.auraRows + 1
+                --                frame.auraRows = frame.auraRows + 1
             else
                 rowWidth = rowWidth + size + offsetX
             end
 
             if (rowWidth > 121) then
-                updateFunc(frame, auraName, i, numOppositeAuras, firstBuffOnRow, size, offsetX, offsetY, mirrorAurasVertically)
+                updateFunc(frame, auraName, i, numOppositeAuras, firstBuffOnRow, size, offsetX, offsetY,
+                    mirrorAurasVertically)
                 rowWidth = size
---                frame.auraRows = frame.auraRows + 1
+                --                frame.auraRows = frame.auraRows + 1
                 firstBuffOnRow = i
                 offsetY = AURA_OFFSET
             else
@@ -512,17 +500,13 @@ function General:SaveFramesPoints()
     db.general.framesPoints = {
         player = {PlayerFrame:GetPoint()},
         target = {TargetFrame:GetPoint()},
-        focus = {FocusFrame:GetPoint()},
+        focus = {FocusFrame:GetPoint()}
     }
 end
 
 function General:RestoreFramesPoints()
     if (db.general.framesPoints) then
-        for _, frame in pairs({
-            PlayerFrame,
-            TargetFrame,
-            FocusFrame
-        }) do
+        for _, frame in pairs({PlayerFrame, TargetFrame, FocusFrame}) do
             frame:ClearAllPoints()
             frame:SetPoint(unpack(db.general.framesPoints[frame.unit]))
             frame:SetUserPlaced(true)

@@ -10,7 +10,7 @@ local DEFAULT_BAR_LARGE_FONT_SIZE = 11
 local DEFAULT_BAR_SMALL_FONT_SIZE = 9
 local DEFAULT_BAR_FONT_STYLE = "OUTLINE"
 local TEXTURE_NAME = "Interface\\AddOns\\EnhancedClassIconPortraits\\Textures\\%s.tga"
-local DEFAULT_FRAMES_NAME_COLOR = { 5, 0.9, 0 }
+local DEFAULT_FRAMES_NAME_COLOR = {5, 0.9, 0}
 
 local DEFAULT_CUSTOM_FORMAT = "%CURRENT% / %MAX% (%PERCENT%%)"
 
@@ -21,7 +21,7 @@ local DefaultCustomFormatFormulas = function()
         ["gt1M"] = "%.1fM",
         ["gt10M"] = "%.fM",
         ["gt100M"] = "%.fM",
-        ["gt1B"] = "%.fB",
+        ["gt1B"] = "%.fB"
     }
 end
 
@@ -31,7 +31,7 @@ local function CustomReadableNumber(num, format, useFullValues)
     if not num then
         return 0
     elseif num >= 1000000000 then
-        ret = string.format(format["gt1B"], num / (useFullValues or 1000000000))  -- num > 1 000 000 000
+        ret = string.format(format["gt1B"], num / (useFullValues or 1000000000)) -- num > 1 000 000 000
     elseif num >= 100000000 then
         ret = string.format(format["gt100M"], num / (useFullValues or 1000000)) -- num > 100 000 000
     elseif num >= 10000000 then
@@ -54,7 +54,7 @@ local function CustomChineseReadableNumber(num, format)
     if not num then
         return 0
     elseif num >= 1000000000 then
-        ret = string.format(format["gt1B"], num / 100000000)  -- num > 1 000 000 000
+        ret = string.format(format["gt1B"], num / 100000000) -- num > 1 000 000 000
     elseif num >= 100000000 then
         ret = string.format(format["gt100M"], num / 100000000) -- num > 100 000 000
     elseif num >= 10000000 then
@@ -118,9 +118,9 @@ local defaults = {
             forceManaBarTexture = false,
             brightFrameBorder = 1,
             lightTexture = false,
-            friendlyFrameDefaultColors = { 0, 1, 0 },
-            enemyFrameDefaultColors = { 1, 0, 0 },
-            neutralFrameDefaultColors = { 1, 1, 0 },
+            friendlyFrameDefaultColors = {0, 1, 0},
+            enemyFrameDefaultColors = {1, 0, 0},
+            neutralFrameDefaultColors = {1, 1, 0},
 
             showWelcomeMessage = true,
             framesPoints = false,
@@ -154,7 +154,7 @@ local defaults = {
             playerNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
             playerNameFontSize = DEFAULT_BAR_FONT_SIZE,
             playerNameFontStyle = "NONE",
-            playerNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
+            playerNameColor = {unpack(DEFAULT_FRAMES_NAME_COLOR)},
 
             showHitIndicator = true,
             showSpecialbar = true,
@@ -164,7 +164,7 @@ local defaults = {
             attackBackgroundOpacity = 0.7,
             showGroupIndicator = true,
             showRoleIcon = false,
-            showPVPIcon = true,
+            showPVPIcon = true
         },
 
         target = {
@@ -195,13 +195,13 @@ local defaults = {
             targetNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
             targetNameFontSize = DEFAULT_BAR_FONT_SIZE,
             targetNameFontStyle = "NONE",
-            targetNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
+            targetNameColor = {unpack(DEFAULT_FRAMES_NAME_COLOR)},
 
             showToTFrame = true,
             showAttackBackground = false,
             attackBackgroundOpacity = 0.7,
             showTargetCastbar = false,
-            showPVPIcon = true,
+            showPVPIcon = true
         },
 
         focus = {
@@ -232,12 +232,12 @@ local defaults = {
             focusNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
             focusNameFontSize = DEFAULT_BAR_FONT_SIZE,
             focusNameFontStyle = "NONE",
-            focusNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
+            focusNameColor = {unpack(DEFAULT_FRAMES_NAME_COLOR)},
 
             showToTFrame = true,
             showAttackBackground = false,
             attackBackgroundOpacity = 0.7,
-            showPVPIcon = true,
+            showPVPIcon = true
         },
 
         pet = {
@@ -267,12 +267,12 @@ local defaults = {
             petNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
             petNameFontSize = DEFAULT_BAR_FONT_SIZE,
             petNameFontStyle = "NONE",
-            petNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
+            petNameColor = {unpack(DEFAULT_FRAMES_NAME_COLOR)},
 
             showHitIndicator = true,
             showStatusTexture = true,
             showAttackBackground = true,
-            attackBackgroundOpacity = 0.7,
+            attackBackgroundOpacity = 0.7
         },
 
         party = {
@@ -300,9 +300,9 @@ local defaults = {
             partyNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
             partyNameFontSize = DEFAULT_BAR_FONT_SIZE,
             partyNameFontStyle = "NONE",
-            partyNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
+            partyNameColor = {unpack(DEFAULT_FRAMES_NAME_COLOR)},
 
-            showPetFrames = true,
+            showPetFrames = true
         },
 
         boss = {
@@ -331,10 +331,10 @@ local defaults = {
             bossNameFontFamily = DEFAULT_BAR_FONT_FAMILY,
             bossNameFontSize = DEFAULT_BAR_LARGE_FONT_SIZE,
             bossNameFontStyle = "NONE",
-            bossNameColor = { unpack(DEFAULT_FRAMES_NAME_COLOR) },
+            bossNameColor = {unpack(DEFAULT_FRAMES_NAME_COLOR)},
 
-            showThreatIndicator = true,
-        },
+            showThreatIndicator = true
+        }
     }
 }
 
@@ -387,8 +387,9 @@ function EasyFrames:OnProfileChanged(event, database, newProfileKey)
     end
 end
 
-EasyFrames.Utils = {};
-function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFormat, customHealthFormatFormulas, useHealthFormatFullValues, useChineseNumeralsHealthFormat)
+EasyFrames.Utils = {}
+function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFormat, customHealthFormatFormulas,
+    useHealthFormatFullValues, useChineseNumeralsHealthFormat)
     local unit = frame.unit
     local healthbar = frame:GetParent().healthbar
 
@@ -412,21 +413,10 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
                 HealthMax = CustomChineseReadableNumber(HealthMax, customHealthFormatFormulas)
             end
 
-            local Result = string.gsub(
-                string.gsub(
-                    string.gsub(
-                        customHealthFormat,
-                        "%%PERCENT%%",
-                        string.format("%.0f", HealthPercent)
-                    ),
-                    "%%MAX%%",
-                    HealthMax
-                ),
-                "%%CURRENT%%",
-                Health
-            )
+            local Result = string.gsub(string.gsub(string.gsub(customHealthFormat, "%%PERCENT%%",
+                string.format("%.0f", HealthPercent)), "%%MAX%%", HealthMax), "%%CURRENT%%", Health)
 
-            healthbar.TextString:SetText(Result);
+            healthbar.TextString:SetText(Result)
         end
     elseif (healthFormat == "1") then
         -- Percent
@@ -443,7 +433,7 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
             local Health = UnitHealth(unit)
             local HealthMax = UnitHealthMax(unit)
 
-            healthbar.TextString:SetText(ReadableNumber(Health) .. " / " .. ReadableNumber(HealthMax));
+            healthbar.TextString:SetText(ReadableNumber(Health) .. " / " .. ReadableNumber(HealthMax))
         end
 
     elseif (healthFormat == "3") then
@@ -454,7 +444,8 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
             local HealthMax = UnitHealthMax(unit)
             local HealthPercent = (UnitHealth(unit) / UnitHealthMax(unit)) * 100
 
-            healthbar.TextString:SetText(ReadableNumber(Health) .. " / " .. ReadableNumber(HealthMax) .. " (" .. string.format("%.0f", HealthPercent) .. "%)");
+            healthbar.TextString:SetText(ReadableNumber(Health) .. " / " .. ReadableNumber(HealthMax) .. " (" ..
+                                             string.format("%.0f", HealthPercent) .. "%)")
         end
 
     elseif (healthFormat == "4") then
@@ -464,12 +455,13 @@ function EasyFrames.Utils.UpdateHealthValues(frame, healthFormat, customHealthFo
             local Health = UnitHealth(unit)
             local HealthPercent = (UnitHealth(unit) / UnitHealthMax(unit)) * 100
 
-            healthbar.TextString:SetText(ReadableNumber(Health) .. " (" .. string.format("%.0f", HealthPercent) .. "%)");
+            healthbar.TextString:SetText(ReadableNumber(Health) .. " (" .. string.format("%.0f", HealthPercent) .. "%)")
         end
     end
 end
 
-function EasyFrames.Utils.UpdateManaValues(frame, manaFormat, customManaFormat, customManaFormatFormulas, useManaFormatFullValues, useChineseNumeralsManaFormat)
+function EasyFrames.Utils.UpdateManaValues(frame, manaFormat, customManaFormat, customManaFormatFormulas,
+    useManaFormatFullValues, useChineseNumeralsManaFormat)
     local unit = frame.unit
     local manabar = frame
 
@@ -488,10 +480,11 @@ function EasyFrames.Utils.UpdateManaValues(frame, manaFormat, customManaFormat, 
     elseif (manaFormat == "2") then
         -- Smart
         if (UnitPowerType(unit) == 0) then
-            --mana
+            -- mana
             manabar.TextString:SetText(string.format("%.0f%%", ManaPercent))
-        elseif (UnitPowerType(unit) == 1 or UnitPowerType(unit) == 2 or UnitPowerType(unit) == 3 or UnitPowerType(unit) == 6) then
-            --manabar.TextString:SetText(AbbreviateLargeNumbers(UnitPower(unit)))
+        elseif (UnitPowerType(unit) == 1 or UnitPowerType(unit) == 2 or UnitPowerType(unit) == 3 or UnitPowerType(unit) ==
+            6) then
+            -- manabar.TextString:SetText(AbbreviateLargeNumbers(UnitPower(unit)))
             manabar.TextString:SetText(UnitPower(unit))
         end
 
@@ -519,116 +512,51 @@ function EasyFrames.Utils.UpdateManaValues(frame, manaFormat, customManaFormat, 
                 ManaMax = CustomChineseReadableNumber(ManaMax, customManaFormatFormulas)
             end
 
-            local Result = string.gsub(
-                string.gsub(
-                    string.gsub(
-                        customManaFormat,
-                        "%%PERCENT%%",
-                        string.format("%.0f", ManaPercent)
-                    ),
-                    "%%MAX%%",
-                    ManaMax
-                ),
-                "%%CURRENT%%",
-                Mana
-            )
+            local Result = string.gsub(string.gsub(string.gsub(customManaFormat, "%%PERCENT%%",
+                string.format("%.0f", ManaPercent)), "%%MAX%%", ManaMax), "%%CURRENT%%", Mana)
 
-            manabar.TextString:SetText(Result);
+            manabar.TextString:SetText(Result)
         end
 
     end
 end
 
 function EasyFrames.Utils.GetAllFrames()
-    return {
-        PlayerFrame,
-
-        TargetFrame,
-        TargetFrameToT,
-
-        FocusFrame,
-        FocusFrameToT,
-
-        PetFrame,
-
-        PartyMemberFrame1,
-        PartyMemberFrame2,
-        PartyMemberFrame3,
-        PartyMemberFrame4,
-    }
+    return {PlayerFrame, TargetFrame, TargetFrameToT, FocusFrame, FocusFrameToT, PetFrame, PartyMemberFrame1,
+            PartyMemberFrame2, PartyMemberFrame3, PartyMemberFrame4}
 end
 
-for _,frame in next,EasyFrames.Utils.GetAllFrames() do
-	local manabar = frame.manabar
-	if manabar then
-		local textString = manabar.TextString
-		if textString then
-			local point, relativeFrame, relativePoint, x, y = textString:GetPoint()
-			textString:SetPoint(point, relativeFrame, relativePoint, x, y + 2)
-		end
-	end
+for _, frame in next, EasyFrames.Utils.GetAllFrames() do
+    local manabar = frame.manabar
+    if manabar then
+        local textString = manabar.TextString
+        if textString then
+            local point, relativeFrame, relativePoint, x, y = textString:GetPoint()
+            textString:SetPoint(point, relativeFrame, relativePoint, x, y + 2)
+        end
+    end
 end
 
 function EasyFrames.Utils.GetFramesHealthBar()
-    return {
-        PlayerFrameHealthBar,
-        PetFrameHealthBar,
-
-        TargetFrameHealthBar,
-        TargetFrameToTHealthBar,
-
-        FocusFrameHealthBar,
-        FocusFrameToTHealthBar,
-
-        PartyMemberFrame1HealthBar,
-        PartyMemberFrame2HealthBar,
-        PartyMemberFrame3HealthBar,
-        PartyMemberFrame4HealthBar,
-
-        Boss1TargetFrameHealthBar,
-        Boss2TargetFrameHealthBar,
-        Boss3TargetFrameHealthBar,
-        Boss4TargetFrameHealthBar,
-        Boss5TargetFrameHealthBar,
-    }
+    return {PlayerFrameHealthBar, PetFrameHealthBar, TargetFrameHealthBar, TargetFrameToTHealthBar, FocusFrameHealthBar,
+            FocusFrameToTHealthBar, PartyMemberFrame1HealthBar, PartyMemberFrame2HealthBar, PartyMemberFrame3HealthBar,
+            PartyMemberFrame4HealthBar, Boss1TargetFrameHealthBar, Boss2TargetFrameHealthBar, Boss3TargetFrameHealthBar,
+            Boss4TargetFrameHealthBar, Boss5TargetFrameHealthBar}
 end
 
 function EasyFrames.Utils.GetFramesManaBar()
-    return {
-        PlayerFrameManaBar,
-        PlayerFrameAlternateManaBar,
-        PetFrameManaBar,
+    return {PlayerFrameManaBar, PlayerFrameAlternateManaBar, PetFrameManaBar, TargetFrameManaBar, TargetFrameToTManaBar,
 
-        TargetFrameManaBar,
-        TargetFrameToTManaBar,
-
-        FocusFrameManaBar,
-        FocusFrameToTManaBar,
-
-        PartyMemberFrame1ManaBar,
-        PartyMemberFrame2ManaBar,
-        PartyMemberFrame3ManaBar,
-        PartyMemberFrame4ManaBar,
-    }
+            FocusFrameManaBar, FocusFrameToTManaBar, PartyMemberFrame1ManaBar, PartyMemberFrame2ManaBar,
+            PartyMemberFrame3ManaBar, PartyMemberFrame4ManaBar}
 end
 
 function EasyFrames.Utils.GetPartyFrames()
-    return {
-        PartyMemberFrame1,
-        PartyMemberFrame2,
-        PartyMemberFrame3,
-        PartyMemberFrame4,
-    }
+    return {PartyMemberFrame1, PartyMemberFrame2, PartyMemberFrame3, PartyMemberFrame4}
 end
 
 function EasyFrames.Utils.GetBossFrames()
-    return {
-        Boss1TargetFrame,
-        Boss2TargetFrame,
-        Boss3TargetFrame,
-        Boss4TargetFrame,
-        Boss5TargetFrame,
-    }
+    return {Boss1TargetFrame, Boss2TargetFrame, Boss3TargetFrame, Boss4TargetFrame, Boss5TargetFrame}
 end
 
 function EasyFrames.Utils.GetFrameByUnit(unit)
@@ -640,7 +568,9 @@ function EasyFrames.Utils.SetTextColor(string, colors)
 end
 
 function EasyFrames.Utils.ClassPortraits(frame)
-    if not frame.portrait then return end
+    if not frame.portrait then
+        return
+    end
 
     if UnitIsPlayer(frame.unit) then
         local _, class = UnitClass(frame.unit)
@@ -669,7 +599,7 @@ function EasyFrames.Utils.DefaultPortraits(frame)
     frame.portrait:SetTexCoord(0, 1, 0, 1)
 end
 
-EasyFrames.Helpers = {};
+EasyFrames.Helpers = {}
 function EasyFrames.Helpers.Iterator(object)
     local iterator = function(callback)
         for _, value in pairs(object) do

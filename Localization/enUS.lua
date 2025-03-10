@@ -42,14 +42,14 @@ L["Manabar font family"] = true
 L["Font style"] = true
 
 L["Reverse the direction of losing health/mana"] = true
-L["By default direction starting from right to left. If checked direction of losing health/mana will be from left to right"] = true
+L["By default direction starting from right to left. If checked direction of losing health/mana will be from left to right"] =
+    true
 
 L["Custom format of HP"] = true
 L["You can set custom HP format. More information about custom HP format you can read on project site.\n\n" ..
     "Formulas:"] = true
 L["Use full values of health"] = true
-L["Formula converts the original value to the specified value.\n\n" ..
-    "Description: for example formula is '%.fM'.\n" ..
+L["Formula converts the original value to the specified value.\n\n" .. "Description: for example formula is '%.fM'.\n" ..
     "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
     "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"] = true
 L["Value greater than 1000"] = true
@@ -61,21 +61,16 @@ L["Value greater than 1 000 000 000"] = true
 L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
     "If checked formulas will use full values of HP (without divider)"] = true
 L["Displayed HP by pattern"] = true
-L["You can use patterns:\n\n" ..
-    "%CURRENT% - return current health\n" ..
-    "%MAX% - return maximum of health\n" ..
+L["You can use patterns:\n\n" .. "%CURRENT% - return current health\n" .. "%MAX% - return maximum of health\n" ..
     "%PERCENT% - return percent of current/max health\n\n" ..
     "All values are returned from formulas. For set abbreviation use formulas' fields"] = true
 L["Use Chinese numerals format"] = true
 L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
     "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
     "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-    "Use these formulas for Chinese numerals:\n" ..
-    "Value greater than 1000 -> '%.2f万'.\n" ..
-    "Value greater than 100 000 -> '%.1f万'.\n" ..
-    "Value greater than 1 000 000 -> '%.1f万'.\n" ..
-    "Value greater than 10 000 000 -> '%.0f万'.\n" ..
-    "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
+    "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+    "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+    "Value greater than 10 000 000 -> '%.0f万'.\n" .. "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
     "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
     "More information about Chinese numerals format you can read on project site"] = true
 
@@ -86,9 +81,7 @@ L["Use full values of mana"] = true
 L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
     "If checked formulas will use full values of mana (without divider)"] = true
 L["Displayed mana by pattern"] = true
-L["You can use patterns:\n\n" ..
-    "%CURRENT% - return current mana\n" ..
-    "%MAX% - return maximum of mana\n" ..
+L["You can use patterns:\n\n" .. "%CURRENT% - return current mana\n" .. "%MAX% - return maximum of mana\n" ..
     "%PERCENT% - return percent of current/max mana\n\n" ..
     "All values are returned from formulas. For set abbreviation use formulas' fields"] = true
 
@@ -191,7 +184,8 @@ L["Set the player healthbar text format"] = true
 L["Player manabar text format"] = true
 L["Set the player manabar text format"] = true
 L["Show player specialbar"] = true
-L["Show or hide the player specialbar, like Paladin's holy power, Priest's orbs, Monk's harmony or Warlock's soul shards"] = true
+L["Show or hide the player specialbar, like Paladin's holy power, Priest's orbs, Monk's harmony or Warlock's soul shards"] =
+    true
 L["Show player resting icon"] = true
 L["Show or hide player resting icon when player is resting (e.g. in the tavern or in the capital)"] = true
 L["Show player status texture (inside the frame)"] = true
@@ -225,7 +219,8 @@ L["Show target of target frame"] = true
 L["Show target combat texture (outside the frame)"] = true
 L["Show or hide target red background texture (blinking red glow outside the frame in combat)"] = true
 L["Show blizzard's target castbar"] = true
-L["When you change this option you need to reload your UI (because it's Blizzard config variable). \n\nCommand /reload"] = true
+L["When you change this option you need to reload your UI (because it's Blizzard config variable). \n\nCommand /reload"] =
+    true
 L["Show target PVP icon"] = true
 L["Show or hide target PVP icon"] = true
 
@@ -261,8 +256,9 @@ L["Pet name color"] = true
 L["Pet frame scale"] = true
 L["Scale of pet unit frame"] = true
 L["Lock pet frame"] = true
-L["Lock or unlock pet frame"] = "Lock or unlock pet frame. When unlocked you can move frame using your mouse (draggable). " ..
-    "But PetFrame is protected. So we cannot modify its position during combat lockdown. Frame positions can be restored only in non-combat"
+L["Lock or unlock pet frame"] =
+    "Lock or unlock pet frame. When unlocked you can move frame using your mouse (draggable). " ..
+        "But PetFrame is protected. So we cannot modify its position during combat lockdown. Frame positions can be restored only in non-combat"
 L["Reset position to default"] = true
 L["Pet healthbar text format"] = true
 L["Set the pet healthbar text format"] = true

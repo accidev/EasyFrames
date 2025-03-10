@@ -1,11 +1,8 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
 local AceConfig = LibStub("AceConfig-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
-
 
 local unpack, type, tostring = unpack, type, tostring
 
@@ -51,17 +48,17 @@ local function getOptionName(name)
 end
 
 local healthFormat = {
-    ["1"] = L["Percent"], --1
-    ["2"] = L["Current + Max"], --2
-    ["3"] = L["Current + Max + Percent"], --3
-    ["4"] = L["Current + Percent"], --4
-    ["custom"] = L["Custom format"], --custom
+    ["1"] = L["Percent"], -- 1
+    ["2"] = L["Current + Max"], -- 2
+    ["3"] = L["Current + Max + Percent"], -- 3
+    ["4"] = L["Current + Percent"], -- 4
+    ["custom"] = L["Custom format"] -- custom
 }
 
 local manaFormat = {
-    ["1"] = L["Percent"], --1
-    ["2"] = L["Smart"], --2
-    ["custom"] = L["Custom format"], --custom
+    ["1"] = L["Percent"], -- 1
+    ["2"] = L["Smart"], -- 2
+    ["custom"] = L["Custom format"] -- custom
 }
 
 local fontStyle = {
@@ -73,19 +70,18 @@ local fontStyle = {
 
 local portrait = {
     ["1"] = L["Default"],
-    ["2"] = L["Class portraits"],
---    ["3"] = L["Hide"],
+    ["2"] = L["Class portraits"]
+    --    ["3"] = L["Hide"],
 }
 
 local frames = {
     ["player"] = L["Player"],
     ["target"] = L["Target"],
-    ["focus"] = L["Focus"],
+    ["focus"] = L["Focus"]
 }
 
 local MIN_RANGE = 6
 local MAX_RANGE = 18
-
 
 local generalOptions = {
     name = getOptionName(L["Main options"]),
@@ -95,7 +91,7 @@ local generalOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In main options you can set the global options like colored frames, buffs settings, etc"],
+            name = L["In main options you can set the global options like colored frames, buffs settings, etc"]
         },
 
         framesGroup = {
@@ -115,7 +111,7 @@ local generalOptions = {
                 description = {
                     type = "description",
                     order = 2,
-                    name = L["Setting for unit frames"],
+                    name = L["Setting for unit frames"]
                 },
 
                 classColored = {
@@ -123,7 +119,7 @@ local generalOptions = {
                     order = 3,
                     name = L["Class colored healthbars"],
                     desc = L["If checked frames becomes class colored.\n\n" ..
-                            "This option excludes the option 'Healthbar color is based on the current health value'"],
+                        "This option excludes the option 'Healthbar color is based on the current health value'"],
                     disabled = function()
                         if (EasyFrames.db.profile.general.colorBasedOnCurrentHealth) then
                             return true
@@ -150,7 +146,7 @@ local generalOptions = {
                     end,
                     name = L["Healthbar color is based on the current health value"],
                     desc = L["Healthbar color is based on the current health value.\n\n" ..
-                            "This option excludes the option 'Class colored healthbars'"],
+                        "This option excludes the option 'Class colored healthbars'"],
                     arg = "general"
                 },
 
@@ -209,14 +205,14 @@ local generalOptions = {
                             end,
                             isPercent = true,
                             arg = "general"
-                        },
+                        }
                     }
                 },
 
                 newLine2 = {
                     type = "description",
                     order = 9,
-                    name = "",
+                    name = ""
                 },
 
                 barTexture = {
@@ -272,7 +268,7 @@ local generalOptions = {
                         EasyFrames:GetModule("General"):SetFrameBarTexture(EasyFrames.db.profile.general.barTexture)
                     end,
                     arg = "general"
-                },
+                }
             }
         },
 
@@ -287,13 +283,13 @@ local generalOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Buffs"],
+                    name = L["Buffs"]
                 },
 
                 description = {
                     type = "description",
                     order = 2,
-                    name = L["Buffs settings (like custom buffsize, highlight dispelled buffs, etc)"],
+                    name = L["Buffs settings (like custom buffsize, highlight dispelled buffs, etc)"]
                 },
 
                 customBuffSize = {
@@ -441,7 +437,7 @@ local generalOptions = {
                         EasyFrames:GetModule("General"):SetMaxDebuffCount(value)
                     end,
                     arg = "general"
-                },
+                }
             }
         },
 
@@ -464,13 +460,13 @@ local generalOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Frames colors"],
+                    name = L["Frames colors"]
                 },
 
                 description = {
                     type = "description",
                     order = 2,
-                    name = L["In this section you can set the default colors for friendly, enemy and neutral frames"],
+                    name = L["In this section you can set the default colors for friendly, enemy and neutral frames"]
                 },
 
                 -- [[
@@ -482,7 +478,7 @@ local generalOptions = {
                     desc = L["You can set the default friendly healthbar color for frames"],
                     arg = "general"
                 },
-                --]]
+                -- ]]
 
                 friendlyFrameDefaultColorsReset = {
                     type = "execute",
@@ -492,7 +488,7 @@ local generalOptions = {
                     func = function()
                         EasyFrames:GetModule("General"):ResetFriendlyFrameDefaultColors()
                         EasyFrames:GetModule("General"):SetFramesColored()
-                    end,
+                    end
                 },
 
                 -- [[
@@ -504,7 +500,7 @@ local generalOptions = {
                     desc = L["You can set the default enemy healthbar color for frames"],
                     arg = "general"
                 },
-                --]]--
+                -- ]]--
 
                 enemyTargetDefaultColorsReset = {
                     type = "execute",
@@ -514,7 +510,7 @@ local generalOptions = {
                     func = function()
                         EasyFrames:GetModule("General"):ResetEnemyFrameDefaultColors()
                         EasyFrames:GetModule("General"):SetFramesColored()
-                    end,
+                    end
                 },
 
                 -- [[
@@ -536,8 +532,8 @@ local generalOptions = {
                     func = function()
                         EasyFrames:GetModule("General"):ResetNeutralFrameDefaultColors()
                         EasyFrames:GetModule("General"):SetFramesColored()
-                    end,
-                },
+                    end
+                }
             }
         },
 
@@ -552,13 +548,13 @@ local generalOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Other"],
+                    name = L["Other"]
                 },
 
                 description = {
                     type = "description",
                     order = 2,
-                    name = L["In this section you can set the settings like 'show welcome message' etc"],
+                    name = L["In this section you can set the settings like 'show welcome message' etc"]
                 },
 
                 showWelcomeMessage = {
@@ -572,7 +568,7 @@ local generalOptions = {
                 newLine = {
                     type = "description",
                     order = 4,
-                    name = "",
+                    name = ""
                 },
 
                 saveFramesPoints = {
@@ -584,7 +580,7 @@ local generalOptions = {
                         info.options.args.otherGroup.args.framesPointsLog.name = L["Saved"]
 
                         EasyFrames:GetModule("General"):SaveFramesPoints()
-                    end,
+                    end
                 },
 
                 restoreFramesPoints = {
@@ -603,14 +599,14 @@ local generalOptions = {
                         info.options.args.otherGroup.args.framesPointsLog.name = L["Restored"]
 
                         EasyFrames:GetModule("General"):RestoreFramesPoints()
-                    end,
+                    end
                 },
 
                 framesPointsLog = {
                     order = 7,
                     type = "description",
                     name = "",
-                    width = "default",
+                    width = "default"
                 },
 
                 frameToSetPoints = {
@@ -660,10 +656,10 @@ local generalOptions = {
 
                         EasyFrames:GetModule("General"):SetFramePoints(frame, x, value)
                     end
-                },
+                }
             }
-        },
-    },
+        }
+    }
 }
 
 local playerOptions = {
@@ -675,7 +671,7 @@ local playerOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In player options you can set scale player frame, healthbar text format, etc"],
+            name = L["In player options you can set scale player frame, healthbar text format, etc"]
         },
 
         scaleFrame = {
@@ -714,7 +710,7 @@ local playerOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["HP and MP bars"],
+                    name = L["HP and MP bars"]
                 },
 
                 healthFormat = {
@@ -733,7 +729,7 @@ local playerOptions = {
                 newLine = {
                     type = "description",
                     order = 3,
-                    name = "",
+                    name = ""
                 },
 
                 healthBarFontStyle = {
@@ -794,7 +790,7 @@ local playerOptions = {
                 newLine2 = {
                     type = "description",
                     order = 8,
-                    name = "",
+                    name = ""
                 },
 
                 manaBarFontStyle = {
@@ -837,7 +833,7 @@ local playerOptions = {
                         EasyFrames:GetModule("Player"):SetManaBarsFont()
                     end,
                     arg = "player"
-                },
+                }
             }
         },
 
@@ -858,14 +854,14 @@ local playerOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of HP"],
+                    name = L["Custom format of HP"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom HP format. More information about custom HP format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customHealthFormatFormulas = {
@@ -887,9 +883,9 @@ local playerOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "player.customHealthFormatFormulas"
                         },
@@ -898,9 +894,9 @@ local playerOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customHealthFormatFormulas"
                         },
 
@@ -909,9 +905,9 @@ local playerOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customHealthFormatFormulas"
                         },
 
@@ -920,9 +916,9 @@ local playerOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customHealthFormatFormulas"
                         },
 
@@ -931,9 +927,9 @@ local playerOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customHealthFormatFormulas"
                         },
 
@@ -942,11 +938,11 @@ local playerOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customHealthFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -955,12 +951,12 @@ local playerOptions = {
                     order = 4,
                     name = L["Use full values of health"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of HP (without divider)"],
+                        "If checked formulas will use full values of HP (without divider)"],
                     arg = "player",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
-                    end,
+                    end
                 },
 
                 customHealthFormat = {
@@ -968,11 +964,9 @@ local playerOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed HP by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current health\n" ..
-                            "%MAX% - return maximum of health\n" ..
-                            "%PERCENT% - return percent of current/max health\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current health\n" ..
+                        "%MAX% - return maximum of health\n" .. "%PERCENT% - return percent of current/max health\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
@@ -987,10 +981,8 @@ local playerOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -999,8 +991,8 @@ local playerOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Player"):UpdateTextStringWithValues()
                     end,
-                    arg = "player",
-                },
+                    arg = "player"
+                }
             }
         },
 
@@ -1021,14 +1013,14 @@ local playerOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of mana"],
+                    name = L["Custom format of mana"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom mana format. More information about custom mana format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customManaFormatFormulas = {
@@ -1050,9 +1042,9 @@ local playerOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "player.customManaFormatFormulas"
                         },
@@ -1061,9 +1053,9 @@ local playerOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customManaFormatFormulas"
                         },
 
@@ -1072,9 +1064,9 @@ local playerOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customManaFormatFormulas"
                         },
 
@@ -1083,9 +1075,9 @@ local playerOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customManaFormatFormulas"
                         },
 
@@ -1094,9 +1086,9 @@ local playerOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customManaFormatFormulas"
                         },
 
@@ -1105,11 +1097,11 @@ local playerOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "player.customManaFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -1118,12 +1110,12 @@ local playerOptions = {
                     order = 4,
                     name = L["Use full values of mana"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of mana (without divider)"],
+                        "If checked formulas will use full values of mana (without divider)"],
                     arg = "player",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
-                    end,
+                    end
                 },
 
                 customManaFormat = {
@@ -1131,11 +1123,9 @@ local playerOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed mana by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current mana\n" ..
-                            "%MAX% - return maximum of mana\n" ..
-                            "%PERCENT% - return percent of current/max mana\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current mana\n" ..
+                        "%MAX% - return maximum of mana\n" .. "%PERCENT% - return percent of current/max mana\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
@@ -1150,10 +1140,8 @@ local playerOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -1162,8 +1150,8 @@ local playerOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Player"):UpdateTextStringWithValues(PlayerFrameManaBar)
                     end,
-                    arg = "player",
-                },
+                    arg = "player"
+                }
             }
         },
 
@@ -1176,7 +1164,7 @@ local playerOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Player name"],
+                    name = L["Player name"]
                 },
 
                 showName = {
@@ -1212,7 +1200,7 @@ local playerOptions = {
                 newLine = {
                     type = "description",
                     order = 4,
-                    name = "",
+                    name = ""
                 },
 
                 playerNameFontStyle = {
@@ -1297,8 +1285,8 @@ local playerOptions = {
                     func = function()
                         EasyFrames:GetModule("Player"):ResetFrameNameColor()
                         EasyFrames:GetModule("Player"):SetFrameNameColor()
-                    end,
-                },
+                    end
+                }
             }
         },
 
@@ -1311,7 +1299,7 @@ local playerOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Show or hide some elements of frame"],
+                    name = L["Show or hide some elements of frame"]
                 },
 
                 showHitIndicator = {
@@ -1437,10 +1425,10 @@ local playerOptions = {
                         EasyFrames:GetModule("Player"):ShowPVPIcon(value)
                     end,
                     arg = "player"
-                },
+                }
             }
-        },
-    },
+        }
+    }
 }
 
 local targetOptions = {
@@ -1452,7 +1440,7 @@ local targetOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In target options you can set scale target frame, healthbar text format, etc"],
+            name = L["In target options you can set scale target frame, healthbar text format, etc"]
         },
 
         scaleFrame = {
@@ -1491,7 +1479,7 @@ local targetOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["HP and MP bars"],
+                    name = L["HP and MP bars"]
                 },
 
                 healthFormat = {
@@ -1510,7 +1498,7 @@ local targetOptions = {
                 newLine = {
                     type = "description",
                     order = 3,
-                    name = "",
+                    name = ""
                 },
 
                 healthBarFontStyle = {
@@ -1571,7 +1559,7 @@ local targetOptions = {
                 newLine2 = {
                     type = "description",
                     order = 8,
-                    name = "",
+                    name = ""
                 },
 
                 manaBarFontStyle = {
@@ -1614,7 +1602,7 @@ local targetOptions = {
                         EasyFrames:GetModule("Target"):SetManaBarsFont()
                     end,
                     arg = "target"
-                },
+                }
 
                 --[[
                 reverseDirectionLosingHP = {
@@ -1629,7 +1617,7 @@ local targetOptions = {
                     end,
                     arg = "target"
                 },
-                ]]--
+                ]] --
             }
         },
 
@@ -1650,14 +1638,14 @@ local targetOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of HP"],
+                    name = L["Custom format of HP"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom HP format. More information about custom HP format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customHealthFormatFormulas = {
@@ -1679,9 +1667,9 @@ local targetOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "target.customHealthFormatFormulas"
                         },
@@ -1690,9 +1678,9 @@ local targetOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customHealthFormatFormulas"
                         },
 
@@ -1701,9 +1689,9 @@ local targetOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customHealthFormatFormulas"
                         },
 
@@ -1712,9 +1700,9 @@ local targetOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customHealthFormatFormulas"
                         },
 
@@ -1723,9 +1711,9 @@ local targetOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customHealthFormatFormulas"
                         },
 
@@ -1734,11 +1722,11 @@ local targetOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customHealthFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -1747,12 +1735,12 @@ local targetOptions = {
                     order = 4,
                     name = L["Use full values of health"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of HP (without divider)"],
+                        "If checked formulas will use full values of HP (without divider)"],
                     arg = "target",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
-                    end,
+                    end
                 },
 
                 customHealthFormat = {
@@ -1760,11 +1748,9 @@ local targetOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed HP by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current health\n" ..
-                            "%MAX% - return maximum of health\n" ..
-                            "%PERCENT% - return percent of current/max health\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current health\n" ..
+                        "%MAX% - return maximum of health\n" .. "%PERCENT% - return percent of current/max health\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
@@ -1779,10 +1765,8 @@ local targetOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -1791,8 +1775,8 @@ local targetOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Target"):UpdateTextStringWithValues()
                     end,
-                    arg = "target",
-                },
+                    arg = "target"
+                }
             }
         },
 
@@ -1813,14 +1797,14 @@ local targetOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of mana"],
+                    name = L["Custom format of mana"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom mana format. More information about custom mana format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customManaFormatFormulas = {
@@ -1842,9 +1826,9 @@ local targetOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "target.customManaFormatFormulas"
                         },
@@ -1853,9 +1837,9 @@ local targetOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customManaFormatFormulas"
                         },
 
@@ -1864,9 +1848,9 @@ local targetOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customManaFormatFormulas"
                         },
 
@@ -1875,9 +1859,9 @@ local targetOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customManaFormatFormulas"
                         },
 
@@ -1886,9 +1870,9 @@ local targetOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customManaFormatFormulas"
                         },
 
@@ -1897,11 +1881,11 @@ local targetOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "target.customManaFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -1910,12 +1894,12 @@ local targetOptions = {
                     order = 4,
                     name = L["Use full values of mana"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of mana (without divider)"],
+                        "If checked formulas will use full values of mana (without divider)"],
                     arg = "target",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
-                    end,
+                    end
                 },
 
                 customManaFormat = {
@@ -1923,11 +1907,9 @@ local targetOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed mana by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current mana\n" ..
-                            "%MAX% - return maximum of mana\n" ..
-                            "%PERCENT% - return percent of current/max mana\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current mana\n" ..
+                        "%MAX% - return maximum of mana\n" .. "%PERCENT% - return percent of current/max mana\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
@@ -1942,10 +1924,8 @@ local targetOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -1954,8 +1934,8 @@ local targetOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Target"):UpdateTextStringWithValues(TargetFrameManaBar)
                     end,
-                    arg = "target",
-                },
+                    arg = "target"
+                }
             }
         },
 
@@ -1968,7 +1948,7 @@ local targetOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Target name"],
+                    name = L["Target name"]
                 },
 
                 showName = {
@@ -2004,7 +1984,7 @@ local targetOptions = {
                 newLine = {
                     type = "description",
                     order = 4,
-                    name = "",
+                    name = ""
                 },
 
                 targetNameFontStyle = {
@@ -2089,8 +2069,8 @@ local targetOptions = {
                     func = function()
                         EasyFrames:GetModule("Target"):ResetFrameNameColor()
                         EasyFrames:GetModule("Target"):SetFrameNameColor()
-                    end,
-                },
+                    end
+                }
             }
         },
 
@@ -2103,7 +2083,7 @@ local targetOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Show or hide some elements of frame"],
+                    name = L["Show or hide some elements of frame"]
                 },
 
                 showToTFrame = {
@@ -2177,10 +2157,10 @@ local targetOptions = {
                         EasyFrames:GetModule("Target"):ShowPVPIcon(value)
                     end,
                     arg = "target"
-                },
-            },
-        },
-    },
+                }
+            }
+        }
+    }
 }
 
 local focusOptions = {
@@ -2192,7 +2172,7 @@ local focusOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In focus options you can set scale focus frame, healthbar text format, etc"],
+            name = L["In focus options you can set scale focus frame, healthbar text format, etc"]
         },
 
         scaleFrame = {
@@ -2231,7 +2211,7 @@ local focusOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["HP and MP bars"],
+                    name = L["HP and MP bars"]
                 },
 
                 healthFormat = {
@@ -2250,7 +2230,7 @@ local focusOptions = {
                 newLine = {
                     type = "description",
                     order = 3,
-                    name = "",
+                    name = ""
                 },
 
                 healthBarFontStyle = {
@@ -2311,7 +2291,7 @@ local focusOptions = {
                 newLine2 = {
                     type = "description",
                     order = 8,
-                    name = "",
+                    name = ""
                 },
 
                 manaBarFontStyle = {
@@ -2367,8 +2347,8 @@ local focusOptions = {
                         EasyFrames:GetModule("Focus"):ReverseDirectionLosingHP(value)
                     end,
                     arg = "focus"
-                },
-            },
+                }
+            }
         },
 
         HPFormat = {
@@ -2388,14 +2368,14 @@ local focusOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of HP"],
+                    name = L["Custom format of HP"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom HP format. More information about custom HP format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customHealthFormatFormulas = {
@@ -2417,9 +2397,9 @@ local focusOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "focus.customHealthFormatFormulas"
                         },
@@ -2428,9 +2408,9 @@ local focusOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customHealthFormatFormulas"
                         },
 
@@ -2439,9 +2419,9 @@ local focusOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customHealthFormatFormulas"
                         },
 
@@ -2450,9 +2430,9 @@ local focusOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customHealthFormatFormulas"
                         },
 
@@ -2461,9 +2441,9 @@ local focusOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customHealthFormatFormulas"
                         },
 
@@ -2472,11 +2452,11 @@ local focusOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customHealthFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -2485,12 +2465,12 @@ local focusOptions = {
                     order = 4,
                     name = L["Use full values of health"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of HP (without divider)"],
+                        "If checked formulas will use full values of HP (without divider)"],
                     arg = "focus",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
-                    end,
+                    end
                 },
 
                 customHealthFormat = {
@@ -2498,11 +2478,9 @@ local focusOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed HP by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current health\n" ..
-                            "%MAX% - return maximum of health\n" ..
-                            "%PERCENT% - return percent of current/max health\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current health\n" ..
+                        "%MAX% - return maximum of health\n" .. "%PERCENT% - return percent of current/max health\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
@@ -2517,10 +2495,8 @@ local focusOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -2529,8 +2505,8 @@ local focusOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Focus"):UpdateTextStringWithValues()
                     end,
-                    arg = "focus",
-                },
+                    arg = "focus"
+                }
             }
         },
 
@@ -2551,14 +2527,14 @@ local focusOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of mana"],
+                    name = L["Custom format of mana"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom mana format. More information about custom mana format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customManaFormatFormulas = {
@@ -2580,9 +2556,9 @@ local focusOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "focus.customManaFormatFormulas"
                         },
@@ -2591,9 +2567,9 @@ local focusOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customManaFormatFormulas"
                         },
 
@@ -2602,9 +2578,9 @@ local focusOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customManaFormatFormulas"
                         },
 
@@ -2613,9 +2589,9 @@ local focusOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customManaFormatFormulas"
                         },
 
@@ -2624,9 +2600,9 @@ local focusOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customManaFormatFormulas"
                         },
 
@@ -2635,11 +2611,11 @@ local focusOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "focus.customManaFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -2648,12 +2624,12 @@ local focusOptions = {
                     order = 4,
                     name = L["Use full values of mana"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of mana (without divider)"],
+                        "If checked formulas will use full values of mana (without divider)"],
                     arg = "focus",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
-                    end,
+                    end
                 },
 
                 customManaFormat = {
@@ -2661,11 +2637,9 @@ local focusOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed mana by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current mana\n" ..
-                            "%MAX% - return maximum of mana\n" ..
-                            "%PERCENT% - return percent of current/max mana\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current mana\n" ..
+                        "%MAX% - return maximum of mana\n" .. "%PERCENT% - return percent of current/max mana\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
@@ -2680,10 +2654,8 @@ local focusOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -2692,8 +2664,8 @@ local focusOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Focus"):UpdateTextStringWithValues(FocusFrameManaBar)
                     end,
-                    arg = "focus",
-                },
+                    arg = "focus"
+                }
             }
         },
 
@@ -2706,7 +2678,7 @@ local focusOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Focus name"],
+                    name = L["Focus name"]
                 },
 
                 showName = {
@@ -2742,7 +2714,7 @@ local focusOptions = {
                 newLine = {
                     type = "description",
                     order = 4,
-                    name = "",
+                    name = ""
                 },
 
                 focusNameFontStyle = {
@@ -2827,8 +2799,8 @@ local focusOptions = {
                     func = function()
                         EasyFrames:GetModule("Focus"):ResetFrameNameColor()
                         EasyFrames:GetModule("Focus"):SetFrameNameColor()
-                    end,
-                },
+                    end
+                }
             }
         },
 
@@ -2841,7 +2813,7 @@ local focusOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Show or hide some elements of frame"],
+                    name = L["Show or hide some elements of frame"]
                 },
 
                 showToTFrame = {
@@ -2902,10 +2874,10 @@ local focusOptions = {
                         EasyFrames:GetModule("Focus"):ShowPVPIcon(value)
                     end,
                     arg = "focus"
-                },
-            },
-        },
-    },
+                }
+            }
+        }
+    }
 }
 
 local petOptions = {
@@ -2917,7 +2889,7 @@ local petOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In pet options you can set scale pet frame, show/hide pet name, enable/disable pet hit indicators, etc"],
+            name = L["In pet options you can set scale pet frame, show/hide pet name, enable/disable pet hit indicators, etc"]
         },
 
         scaleFrame = {
@@ -2952,7 +2924,7 @@ local petOptions = {
             name = L["Reset position to default"],
             func = function()
                 EasyFrames:GetModule("Pet"):ResetFramePosition()
-            end,
+            end
         },
 
         HPManaFormatOptions = {
@@ -2964,7 +2936,7 @@ local petOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["HP and MP bars"],
+                    name = L["HP and MP bars"]
                 },
 
                 healthFormat = {
@@ -2983,7 +2955,7 @@ local petOptions = {
                 newLine = {
                     type = "description",
                     order = 3,
-                    name = "",
+                    name = ""
                 },
 
                 healthBarFontStyle = {
@@ -3044,7 +3016,7 @@ local petOptions = {
                 newLine2 = {
                     type = "description",
                     order = 8,
-                    name = "",
+                    name = ""
                 },
 
                 manaBarFontStyle = {
@@ -3087,7 +3059,7 @@ local petOptions = {
                         EasyFrames:GetModule("Pet"):SetManaBarsFont()
                     end,
                     arg = "pet"
-                },
+                }
             }
         },
 
@@ -3108,14 +3080,14 @@ local petOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of HP"],
+                    name = L["Custom format of HP"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom HP format. More information about custom HP format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customHealthFormatFormulas = {
@@ -3137,9 +3109,9 @@ local petOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "pet.customHealthFormatFormulas"
                         },
@@ -3148,9 +3120,9 @@ local petOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customHealthFormatFormulas"
                         },
 
@@ -3159,9 +3131,9 @@ local petOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customHealthFormatFormulas"
                         },
 
@@ -3170,9 +3142,9 @@ local petOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customHealthFormatFormulas"
                         },
 
@@ -3181,9 +3153,9 @@ local petOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customHealthFormatFormulas"
                         },
 
@@ -3192,11 +3164,11 @@ local petOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customHealthFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -3205,12 +3177,12 @@ local petOptions = {
                     order = 4,
                     name = L["Use full values of health"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of HP (without divider)"],
+                        "If checked formulas will use full values of HP (without divider)"],
                     arg = "pet",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
-                    end,
+                    end
                 },
 
                 customHealthFormat = {
@@ -3218,11 +3190,9 @@ local petOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed HP by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current health\n" ..
-                            "%MAX% - return maximum of health\n" ..
-                            "%PERCENT% - return percent of current/max health\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current health\n" ..
+                        "%MAX% - return maximum of health\n" .. "%PERCENT% - return percent of current/max health\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
@@ -3237,10 +3207,8 @@ local petOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -3249,8 +3217,8 @@ local petOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Pet"):UpdateTextStringWithValues()
                     end,
-                    arg = "pet",
-                },
+                    arg = "pet"
+                }
             }
         },
 
@@ -3271,14 +3239,14 @@ local petOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of mana"],
+                    name = L["Custom format of mana"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom mana format. More information about custom mana format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customManaFormatFormulas = {
@@ -3300,9 +3268,9 @@ local petOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "pet.customManaFormatFormulas"
                         },
@@ -3311,9 +3279,9 @@ local petOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customManaFormatFormulas"
                         },
 
@@ -3322,9 +3290,9 @@ local petOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customManaFormatFormulas"
                         },
 
@@ -3333,9 +3301,9 @@ local petOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customManaFormatFormulas"
                         },
 
@@ -3344,9 +3312,9 @@ local petOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customManaFormatFormulas"
                         },
 
@@ -3355,11 +3323,11 @@ local petOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "pet.customManaFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -3368,12 +3336,12 @@ local petOptions = {
                     order = 4,
                     name = L["Use full values of mana"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of mana (without divider)"],
+                        "If checked formulas will use full values of mana (without divider)"],
                     arg = "pet",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
-                    end,
+                    end
                 },
 
                 customManaFormat = {
@@ -3381,11 +3349,9 @@ local petOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed mana by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current mana\n" ..
-                            "%MAX% - return maximum of mana\n" ..
-                            "%PERCENT% - return percent of current/max mana\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current mana\n" ..
+                        "%MAX% - return maximum of mana\n" .. "%PERCENT% - return percent of current/max mana\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
@@ -3400,10 +3366,8 @@ local petOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -3412,8 +3376,8 @@ local petOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Pet"):UpdateTextStringWithValues(PetFrameManaBar)
                     end,
-                    arg = "pet",
-                },
+                    arg = "pet"
+                }
             }
         },
 
@@ -3426,7 +3390,7 @@ local petOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Pet name"],
+                    name = L["Pet name"]
                 },
 
                 showName = {
@@ -3445,7 +3409,7 @@ local petOptions = {
                 newLine = {
                     type = "description",
                     order = 3,
-                    name = "",
+                    name = ""
                 },
 
                 petNameFontStyle = {
@@ -3530,8 +3494,8 @@ local petOptions = {
                     func = function()
                         EasyFrames:GetModule("Pet"):ResetFrameNameColor()
                         EasyFrames:GetModule("Pet"):SetFrameNameColor()
-                    end,
-                },
+                    end
+                }
             }
         },
 
@@ -3544,7 +3508,7 @@ local petOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Show or hide some elements of frame"],
+                    name = L["Show or hide some elements of frame"]
                 },
 
                 showHitIndicator = {
@@ -3605,10 +3569,10 @@ local petOptions = {
                     end,
                     isPercent = true,
                     arg = "pet"
-                },
-            },
-        },
-    },
+                }
+            }
+        }
+    }
 }
 
 local partyOptions = {
@@ -3620,7 +3584,7 @@ local partyOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In party options you can set scale party frames, healthbar text format, etc"],
+            name = L["In party options you can set scale party frames, healthbar text format, etc"]
         },
 
         scaleFrame = {
@@ -3646,7 +3610,7 @@ local partyOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["HP and MP bars"],
+                    name = L["HP and MP bars"]
                 },
 
                 healthFormat = {
@@ -3665,7 +3629,7 @@ local partyOptions = {
                 newLine = {
                     type = "description",
                     order = 3,
-                    name = "",
+                    name = ""
                 },
 
                 healthBarFontStyle = {
@@ -3726,7 +3690,7 @@ local partyOptions = {
                 newLine2 = {
                     type = "description",
                     order = 8,
-                    name = "",
+                    name = ""
                 },
 
                 manaBarFontStyle = {
@@ -3769,8 +3733,8 @@ local partyOptions = {
                         EasyFrames:GetModule("Party"):SetManaBarsFont()
                     end,
                     arg = "party"
-                },
-            },
+                }
+            }
         },
 
         HPFormat = {
@@ -3790,14 +3754,14 @@ local partyOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of HP"],
+                    name = L["Custom format of HP"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom HP format. More information about custom HP format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customHealthFormatFormulas = {
@@ -3819,9 +3783,9 @@ local partyOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "party.customHealthFormatFormulas"
                         },
@@ -3830,9 +3794,9 @@ local partyOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customHealthFormatFormulas"
                         },
 
@@ -3841,9 +3805,9 @@ local partyOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customHealthFormatFormulas"
                         },
 
@@ -3852,9 +3816,9 @@ local partyOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customHealthFormatFormulas"
                         },
 
@@ -3863,9 +3827,9 @@ local partyOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customHealthFormatFormulas"
                         },
 
@@ -3874,11 +3838,11 @@ local partyOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customHealthFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -3887,12 +3851,12 @@ local partyOptions = {
                     order = 4,
                     name = L["Use full values of health"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of HP (without divider)"],
+                        "If checked formulas will use full values of HP (without divider)"],
                     arg = "party",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Party"):UpdateTextStringWithValues()
-                    end,
+                    end
                 },
 
                 customHealthFormat = {
@@ -3900,11 +3864,9 @@ local partyOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed HP by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current health\n" ..
-                            "%MAX% - return maximum of health\n" ..
-                            "%PERCENT% - return percent of current/max health\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current health\n" ..
+                        "%MAX% - return maximum of health\n" .. "%PERCENT% - return percent of current/max health\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Party"):UpdateTextStringWithValues()
@@ -3919,10 +3881,8 @@ local partyOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -3931,8 +3891,8 @@ local partyOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Party"):UpdateTextStringWithValues()
                     end,
-                    arg = "party",
-                },
+                    arg = "party"
+                }
             }
         },
 
@@ -3953,14 +3913,14 @@ local partyOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of mana"],
+                    name = L["Custom format of mana"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom mana format. More information about custom mana format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customManaFormatFormulas = {
@@ -3982,9 +3942,9 @@ local partyOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "party.customManaFormatFormulas"
                         },
@@ -3993,9 +3953,9 @@ local partyOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customManaFormatFormulas"
                         },
 
@@ -4004,9 +3964,9 @@ local partyOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customManaFormatFormulas"
                         },
 
@@ -4015,9 +3975,9 @@ local partyOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customManaFormatFormulas"
                         },
 
@@ -4026,9 +3986,9 @@ local partyOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customManaFormatFormulas"
                         },
 
@@ -4037,11 +3997,11 @@ local partyOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "party.customManaFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -4050,12 +4010,12 @@ local partyOptions = {
                     order = 4,
                     name = L["Use full values of mana"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of mana (without divider)"],
+                        "If checked formulas will use full values of mana (without divider)"],
                     arg = "party",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Party"):UpdateTextStringWithValues(PartyMemberFrame1ManaBar)
-                    end,
+                    end
                 },
 
                 customManaFormat = {
@@ -4063,11 +4023,9 @@ local partyOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed mana by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current mana\n" ..
-                            "%MAX% - return maximum of mana\n" ..
-                            "%PERCENT% - return percent of current/max mana\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current mana\n" ..
+                        "%MAX% - return maximum of mana\n" .. "%PERCENT% - return percent of current/max mana\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Party"):UpdateTextStringWithValues(PartyMemberFrame1ManaBar)
@@ -4082,10 +4040,8 @@ local partyOptions = {
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
                         "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
                         "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                        "Use these formulas for Chinese numerals:\n" ..
-                        "Value greater than 1000 -> '%.2f万'.\n" ..
-                        "Value greater than 100 000 -> '%.1f万'.\n" ..
-                        "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
                         "Value greater than 10 000 000 -> '%.0f万'.\n" ..
                         "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
                         "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
@@ -4094,8 +4050,8 @@ local partyOptions = {
                         setOpt(info, value)
                         EasyFrames:GetModule("Party"):UpdateTextStringWithValues(PartyMemberFrame1ManaBar)
                     end,
-                    arg = "party",
-                },
+                    arg = "party"
+                }
             }
         },
 
@@ -4108,7 +4064,7 @@ local partyOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Party frames names"],
+                    name = L["Party frames names"]
                 },
 
                 showName = {
@@ -4126,7 +4082,7 @@ local partyOptions = {
                 newLine = {
                     type = "description",
                     order = 4,
-                    name = "",
+                    name = ""
                 },
 
                 partyNameFontStyle = {
@@ -4211,10 +4167,10 @@ local partyOptions = {
                     func = function()
                         EasyFrames:GetModule("Party"):ResetFrameNameColor()
                         EasyFrames:GetModule("Party"):SetFrameNameColor()
-                    end,
-                },
+                    end
+                }
             }
-        },
+        }
 
         --[[
        header2 = {
@@ -4236,7 +4192,7 @@ local partyOptions = {
            arg = "party"
        },
        --]]
-    },
+    }
 }
 
 local bossOptions = {
@@ -4248,7 +4204,7 @@ local bossOptions = {
         desc = {
             type = "description",
             order = 1,
-            name = L["In boss options you can set scale boss frames, healthbar text format, etc"],
+            name = L["In boss options you can set scale boss frames, healthbar text format, etc"]
         },
 
         scaleFrame = {
@@ -4274,7 +4230,7 @@ local bossOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["HP and MP bars"],
+                    name = L["HP and MP bars"]
                 },
 
                 healthFormat = {
@@ -4293,7 +4249,7 @@ local bossOptions = {
                 newLine = {
                     type = "description",
                     order = 3,
-                    name = "",
+                    name = ""
                 },
 
                 healthBarFontStyle = {
@@ -4354,7 +4310,7 @@ local bossOptions = {
                 newLine2 = {
                     type = "description",
                     order = 8,
-                    name = "",
+                    name = ""
                 },
 
                 manaBarFontStyle = {
@@ -4397,8 +4353,8 @@ local bossOptions = {
                         EasyFrames:GetModule("Boss"):SetManaBarsFont()
                     end,
                     arg = "boss"
-                },
-            },
+                }
+            }
         },
 
         HPFormat = {
@@ -4418,14 +4374,14 @@ local bossOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of HP"],
+                    name = L["Custom format of HP"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom HP format. More information about custom HP format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customHealthFormatFormulas = {
@@ -4447,9 +4403,9 @@ local bossOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "boss.customHealthFormatFormulas"
                         },
@@ -4458,9 +4414,9 @@ local bossOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customHealthFormatFormulas"
                         },
 
@@ -4469,9 +4425,9 @@ local bossOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customHealthFormatFormulas"
                         },
 
@@ -4480,9 +4436,9 @@ local bossOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customHealthFormatFormulas"
                         },
 
@@ -4491,9 +4447,9 @@ local bossOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customHealthFormatFormulas"
                         },
 
@@ -4502,11 +4458,11 @@ local bossOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customHealthFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -4515,12 +4471,12 @@ local bossOptions = {
                     order = 4,
                     name = L["Use full values of health"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of HP (without divider)"],
+                        "If checked formulas will use full values of HP (without divider)"],
                     arg = "boss",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Boss"):UpdateTextStringWithValues()
-                    end,
+                    end
                 },
 
                 customHealthFormat = {
@@ -4528,11 +4484,9 @@ local bossOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed HP by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current health\n" ..
-                            "%MAX% - return maximum of health\n" ..
-                            "%PERCENT% - return percent of current/max health\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current health\n" ..
+                        "%MAX% - return maximum of health\n" .. "%PERCENT% - return percent of current/max health\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Boss"):UpdateTextStringWithValues()
@@ -4545,22 +4499,20 @@ local bossOptions = {
                     order = 6,
                     name = L["Use Chinese numerals format"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
-                            "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
-                            "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                            "Use these formulas for Chinese numerals:\n" ..
-                            "Value greater than 1000 -> '%.2f万'.\n" ..
-                            "Value greater than 100 000 -> '%.1f万'.\n" ..
-                            "Value greater than 1 000 000 -> '%.1f万'.\n" ..
-                            "Value greater than 10 000 000 -> '%.0f万'.\n" ..
-                            "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
-                            "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
-                            "More information about Chinese numerals format you can read on project site"],
+                        "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
+                        "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Value greater than 10 000 000 -> '%.0f万'.\n" ..
+                        "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
+                        "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
+                        "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Boss"):UpdateTextStringWithValues()
                     end,
-                    arg = "boss",
-                },
+                    arg = "boss"
+                }
             }
         },
 
@@ -4581,14 +4533,14 @@ local bossOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Custom format of mana"],
+                    name = L["Custom format of mana"]
                 },
 
                 desc = {
                     type = "description",
                     order = 2,
                     name = L["You can set custom mana format. More information about custom mana format you can read on project site.\n\n" ..
-                            "Formulas:"],
+                        "Formulas:"]
                 },
 
                 customManaFormatFormulas = {
@@ -4610,9 +4562,9 @@ local bossOptions = {
                             order = 1,
                             name = L["Value greater than 1000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
 
                             arg = "boss.customManaFormatFormulas"
                         },
@@ -4621,9 +4573,9 @@ local bossOptions = {
                             order = 2,
                             name = L["Value greater than 100 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customManaFormatFormulas"
                         },
 
@@ -4632,9 +4584,9 @@ local bossOptions = {
                             order = 3,
                             name = L["Value greater than 1 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customManaFormatFormulas"
                         },
 
@@ -4643,9 +4595,9 @@ local bossOptions = {
                             order = 4,
                             name = L["Value greater than 10 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customManaFormatFormulas"
                         },
 
@@ -4654,9 +4606,9 @@ local bossOptions = {
                             order = 5,
                             name = L["Value greater than 100 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customManaFormatFormulas"
                         },
 
@@ -4665,11 +4617,11 @@ local bossOptions = {
                             order = 6,
                             name = L["Value greater than 1 000 000 000"],
                             desc = L["Formula converts the original value to the specified value.\n\n" ..
-                                    "Description: for example formula is '%.fM'.\n" ..
-                                    "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
-                                    "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
+                                "Description: for example formula is '%.fM'.\n" ..
+                                "The first part '%.f' is the formula itself, the second part 'M' is the abbreviation\n\n" ..
+                                "Example, value is 150550. '%.f' will be converted to '151' and '%.1f' to '150.6'"],
                             arg = "boss.customManaFormatFormulas"
-                        },
+                        }
                     }
                 },
 
@@ -4678,12 +4630,12 @@ local bossOptions = {
                     order = 4,
                     name = L["Use full values of mana"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more it's 1000, for 1 000 000 and more it's 1 000 000, etc).\n\n" ..
-                            "If checked formulas will use full values of mana (without divider)"],
+                        "If checked formulas will use full values of mana (without divider)"],
                     arg = "boss",
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Boss"):UpdateTextStringWithValues(Boss1TargetFrameManaBar)
-                    end,
+                    end
                 },
 
                 customManaFormat = {
@@ -4691,11 +4643,9 @@ local bossOptions = {
                     order = 5,
                     width = "double",
                     name = L["Displayed mana by pattern"],
-                    desc = L["You can use patterns:\n\n" ..
-                            "%CURRENT% - return current mana\n" ..
-                            "%MAX% - return maximum of mana\n" ..
-                            "%PERCENT% - return percent of current/max mana\n\n" ..
-                            "All values are returned from formulas. For set abbreviation use formulas' fields"],
+                    desc = L["You can use patterns:\n\n" .. "%CURRENT% - return current mana\n" ..
+                        "%MAX% - return maximum of mana\n" .. "%PERCENT% - return percent of current/max mana\n\n" ..
+                        "All values are returned from formulas. For set abbreviation use formulas' fields"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Boss"):UpdateTextStringWithValues(Boss1TargetFrameManaBar)
@@ -4708,22 +4658,20 @@ local bossOptions = {
                     order = 6,
                     name = L["Use Chinese numerals format"],
                     desc = L["By default all formulas use divider (for value eq 1000 and more is 1000, for 1 000 000 and more is 1 000 000, etc).\n" ..
-                            "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
-                            "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
-                            "Use these formulas for Chinese numerals:\n" ..
-                            "Value greater than 1000 -> '%.2f万'.\n" ..
-                            "Value greater than 100 000 -> '%.1f万'.\n" ..
-                            "Value greater than 1 000 000 -> '%.1f万'.\n" ..
-                            "Value greater than 10 000 000 -> '%.0f万'.\n" ..
-                            "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
-                            "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
-                            "More information about Chinese numerals format you can read on project site"],
+                        "But with this option divider eq 10 000 and 100 000 000.\n\n" ..
+                        "The description of the formulas remains the same, so the description of the formulas is not correct with this parameter, but the formulas work correctly.\n\n" ..
+                        "Use these formulas for Chinese numerals:\n" .. "Value greater than 1000 -> '%.2f万'.\n" ..
+                        "Value greater than 100 000 -> '%.1f万'.\n" .. "Value greater than 1 000 000 -> '%.1f万'.\n" ..
+                        "Value greater than 10 000 000 -> '%.0f万'.\n" ..
+                        "Value greater than 100 000 000 -> '%.2f亿'.\n" ..
+                        "Value greater than 1 000 000 000 -> '%.2f亿'.\n\n" ..
+                        "More information about Chinese numerals format you can read on project site"],
                     set = function(info, value)
                         setOpt(info, value)
                         EasyFrames:GetModule("Boss"):UpdateTextStringWithValues(Boss1TargetFrameManaBar)
                     end,
-                    arg = "boss",
-                },
+                    arg = "boss"
+                }
             }
         },
 
@@ -4736,7 +4684,7 @@ local bossOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Boss frames names"],
+                    name = L["Boss frames names"]
                 },
 
                 showName = {
@@ -4772,7 +4720,7 @@ local bossOptions = {
                 newLine = {
                     type = "description",
                     order = 4,
-                    name = "",
+                    name = ""
                 },
 
                 bossNameFontStyle = {
@@ -4857,8 +4805,8 @@ local bossOptions = {
                     func = function()
                         EasyFrames:GetModule("Boss"):ResetFrameNameColor()
                         EasyFrames:GetModule("Boss"):SetFrameNameColor()
-                    end,
-                },
+                    end
+                }
             }
         },
 
@@ -4871,7 +4819,7 @@ local bossOptions = {
                 header = {
                     type = "header",
                     order = 1,
-                    name = L["Show or hide some elements of frame"],
+                    name = L["Show or hide some elements of frame"]
                 },
 
                 showThreatIndicator = {
@@ -4885,10 +4833,10 @@ local bossOptions = {
                         EasyFrames:GetModule("Boss"):ShowThreatIndicator()
                     end,
                     arg = "boss"
-                },
-            },
-        },
-    },
+                }
+            }
+        }
+    }
 }
 
 function EasyFrames:ChatCommand(input)

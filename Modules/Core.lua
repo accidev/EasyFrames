@@ -1,5 +1,3 @@
-
-
 local EasyFrames = LibStub("AceAddon-3.0"):GetAddon("EasyFrames")
 local L = LibStub("AceLocale-3.0"):GetLocale("EasyFrames")
 local Media = LibStub("LibSharedMedia-3.0")
@@ -14,9 +12,9 @@ local BossIterator = EasyFrames.Helpers.Iterator(EasyFrames.Utils.GetBossFrames(
 local OnSetPointHookScript = function(point, relativeTo, relativePoint, xOffset, yOffset)
     return function(frame, _, _, _, _, _, flag)
         if flag ~= "EasyFramesHookSetPoint" then
---            if InCombatLockdown() then
---                return
---            end
+            --            if InCombatLockdown() then
+            --                return
+            --            end
 
             frame:ClearAllPoints()
             frame:SetPoint(point, relativeTo, relativePoint, xOffset, yOffset, "EasyFramesHookSetPoint")
@@ -30,7 +28,7 @@ function Core:OnInitialize()
 end
 
 function Core:OnEnable()
-    --self:RegisterEvent("GROUP_ROSTER_UPDATE", "EventHandler")
+    -- self:RegisterEvent("GROUP_ROSTER_UPDATE", "EventHandler")
     self:RegisterEvent("PARTY_MEMBERS_CHANGED", "EventHandler")
     self:RegisterEvent("PLAYER_TARGET_CHANGED", "EventHandler")
     self:RegisterEvent("PLAYER_FOCUS_CHANGED", "EventHandler")
@@ -47,9 +45,9 @@ function Core:OnEnable()
     self:MovePartyFrameBars()
     self:MoveBossFrameBars()
 
-    --self:MovePlayerFramesBarsTextString()
-    --self:MoveTargetFramesBarsTextString()
-    --self:MoveFocusFramesBarsTextString()
+    -- self:MovePlayerFramesBarsTextString()
+    -- self:MoveTargetFramesBarsTextString()
+    -- self:MoveFocusFramesBarsTextString()
 
     self:MoveLevelText()
 
@@ -57,7 +55,6 @@ function Core:OnEnable()
         print("|cff0cbd0cEasy Frames|cffffffff " .. L["loaded. Options:"] .. " |cff0cbd0c/ef")
     end
 end
-
 
 function Core:EventHandler()
     TargetFrameNameBackground:SetVertexColor(0, 0, 0, 0.0)
@@ -67,39 +64,38 @@ function Core:EventHandler()
     FocusFrameNameBackground:SetHeight(18)
 end
 
-
 function Core:CheckClassification(frame, forceNormalTexture)
-    local classification = UnitClassification(frame.unit);
+    local classification = UnitClassification(frame.unit)
 
-    --frame.Background:SetHeight(41)
+    -- frame.Background:SetHeight(41)
 
     --[[
-    frame.nameBackground:Show();
-    frame.manabar:Show();
-    frame.manabar.TextString:Show();
-    frame.healthBar.TextString:Show();
-    frame.threatIndicator:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Flash");
+    frame.nameBackground:Show()
+    frame.manabar:Show()
+    frame.manabar.TextString:Show()
+    frame.healthBar.TextString:Show()
+    frame.threatIndicator:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Flash")
     ]] --
-    
+
     -- "worldboss", "rareelite", "elite", "rare", "normal" or "trivial"
     if (forceNormalTexture) then
-        frame.borderTexture:SetTexture(Media:Fetch("frames", "default"));
-    -- elseif (classification == "minus") then
-    --     frame.borderTexture:SetTexture(Media:Fetch("frames", "minus"));
-    --     frame.nameBackground:Hide();
-    --     frame.Background:SetHeight(31)
-    --     frame.manabar:Hide();
-    --     frame.manabar.TextString:Hide();
-    --     forceNormalTexture = true;
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "default"))
+        -- elseif (classification == "minus") then
+        --     frame.borderTexture:SetTexture(Media:Fetch("frames", "minus"))
+        --     frame.nameBackground:Hide()
+        --     frame.Background:SetHeight(31)
+        --     frame.manabar:Hide()
+        --     frame.manabar.TextString:Hide()
+        --     forceNormalTexture = true
     elseif (classification == "worldboss" or classification == "elite") then
-        frame.borderTexture:SetTexture(Media:Fetch("frames", "elite"));
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "elite"))
     elseif (classification == "rareelite") then
-        frame.borderTexture:SetTexture(Media:Fetch("frames", "rareelite"));
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "rareelite"))
     elseif (classification == "rare") then
-        frame.borderTexture:SetTexture(Media:Fetch("frames", "rare"));
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "rare"))
     else
-        frame.borderTexture:SetTexture(Media:Fetch("frames", "default"));
-        forceNormalTexture = true;
+        frame.borderTexture:SetTexture(Media:Fetch("frames", "default"))
+        forceNormalTexture = true
     end
 end
 
@@ -114,15 +110,18 @@ function Core:MoveRegion(frame, point, relativeTo, relativePoint, xOffset, yOffs
 end
 
 function Core:MovePlayerFrameName(point, relativeTo, relativePoint, xOffset, yOffset)
-    self:MoveRegion(PlayerName, point or "CENTER", relativeTo or PlayerFrame, relativePoint or "CENTER", xOffset or 52, yOffset or 35)
+    self:MoveRegion(PlayerName, point or "CENTER", relativeTo or PlayerFrame, relativePoint or "CENTER", xOffset or 52,
+        yOffset or 35)
 end
 
 function Core:MoveTargetFrameName(point, relativeTo, relativePoint, xOffset, yOffset)
-    self:MoveRegion(TargetFrame.name, point or "CENTER", relativeTo or TargetFrame, relativePoint or "CENTER", xOffset or -51, yOffset or 35)
+    self:MoveRegion(TargetFrame.name, point or "CENTER", relativeTo or TargetFrame, relativePoint or "CENTER",
+        xOffset or -51, yOffset or 35)
 end
 
 function Core:MoveFocusFrameName(point, relativeTo, relativePoint, xOffset, yOffset)
-    self:MoveRegion(FocusFrame.name, point or "CENTER", relativeTo or FocusFrame, relativePoint or "CENTER", xOffset or -51, yOffset or 35)
+    self:MoveRegion(FocusFrame.name, point or "CENTER", relativeTo or FocusFrame, relativePoint or "CENTER",
+        xOffset or -51, yOffset or 35)
 end
 
 function Core:MoveFramesNames()
@@ -165,7 +164,7 @@ function Core:MovePlayerFrameBars()
     self:MoveRegion(PlayerFrameAlternateManaBarText, "CENTER", PlayerFrameAlternateManaBar, "CENTER", 0, -1)
     self:MoveRegion(PlayerFrameManaBar.TextString, "CENTER", PlayerFrameManaBar, "CENTER", 0, 1)
 
-    --self:MoveRegion(PlayerFrameHealthBar.TextString, "BOTTOM", PlayerFrameManaBar, "BOTTOM", 0, 0, 20)
+    -- self:MoveRegion(PlayerFrameHealthBar.TextString, "BOTTOM", PlayerFrameManaBar, "BOTTOM", 0, 0, 20)
     PlayerFrameGroupIndicator:ClearAllPoints()
     PlayerFrameGroupIndicator:SetPoint("TOPLEFT", 34, 15)
 
@@ -206,11 +205,11 @@ function Core:MovePetFrameBars()
     self:MoveRegion(PetFrameHealthBar, "CENTER", PetFrame, "CENTER", 16, 3)
     self:MoveRegion(PetFrameManaBar, "CENTER", PetFrame, "CENTER", 16, -8)
 
-    --self:MoveRegion(PetFrameHealthBar.RightText, "RIGHT", PetFrame, "TOPLEFT", 113, -23)
-    --self:MoveRegion(PetFrameHealthBar.LeftText, "LEFT", PetFrame, "TOPLEFT", 46, -23)
-    --self:MoveRegion(PetFrameHealthBar.TextString, "CENTER", PetFrameHealthBar, "CENTER", 0, 0)
+    -- self:MoveRegion(PetFrameHealthBar.RightText, "RIGHT", PetFrame, "TOPLEFT", 113, -23)
+    -- self:MoveRegion(PetFrameHealthBar.LeftText, "LEFT", PetFrame, "TOPLEFT", 46, -23)
+    -- self:MoveRegion(PetFrameHealthBar.TextString, "CENTER", PetFrameHealthBar, "CENTER", 0, 0)
 
-    --self:MoveRegion(PetFrameManaBar.TextString, "CENTER", PetFrameManaBar, "CENTER", 0, 0)
+    -- self:MoveRegion(PetFrameManaBar.TextString, "CENTER", PetFrameManaBar, "CENTER", 0, 0)
 end
 
 function Core:MovePlayerFramesBarsTextString()
@@ -218,23 +217,23 @@ function Core:MovePlayerFramesBarsTextString()
     self:MoveRegion(PlayerFrameHealthBar.LeftText, "LEFT", PlayerFrame, "LEFT", 110, 12)
     self:MoveRegion(PlayerFrameHealthBar.TextString, "CENTER", PlayerFrame, "CENTER", 52, 12)
 
-    --self:MoveRegion(PlayerFrameManaBar.TextString, "CENTER", PlayerFrame, "CENTER", 52, 0)
+    -- self:MoveRegion(PlayerFrameManaBar.TextString, "CENTER", PlayerFrame, "CENTER", 52, 0)
 end
 
 function Core:MoveTargetFramesBarsTextString()
-    --self:MoveRegion(TargetFrameHealthBar.RightText, "RIGHT", TargetFrame, "RIGHT", -110, 12)
-    --self:MoveRegion(TargetFrameHealthBar.LeftText, "LEFT", TargetFrame, "LEFT", 8, 12)
-    --self:MoveRegion(TargetFrameHealthBar.TextString, "CENTER", TargetFrame, "CENTER", -51, 12)
+    -- self:MoveRegion(TargetFrameHealthBar.RightText, "RIGHT", TargetFrame, "RIGHT", -110, 12)
+    -- self:MoveRegion(TargetFrameHealthBar.LeftText, "LEFT", TargetFrame, "LEFT", 8, 12)
+    -- self:MoveRegion(TargetFrameHealthBar.TextString, "CENTER", TargetFrame, "CENTER", -51, 12)
 
-    --self:MoveRegion(TargetFrameManaBar.TextString, "CENTER", TargetFrame, "CENTER", -51, -8)
+    -- self:MoveRegion(TargetFrameManaBar.TextString, "CENTER", TargetFrame, "CENTER", -51, -8)
 end
 
 function Core:MoveFocusFramesBarsTextString()
-    --self:MoveRegion(FocusFrameHealthBar.RightText, "RIGHT", FocusFrame, "RIGHT", -110, 12)
-    --self:MoveRegion(FocusFrameHealthBar.LeftText, "LEFT", FocusFrame, "LEFT", 8, 12)
-    --self:MoveRegion(FocusFrameHealthBar.TextString, "CENTER", FocusFrame, "CENTER", -51, 12)
+    -- self:MoveRegion(FocusFrameHealthBar.RightText, "RIGHT", FocusFrame, "RIGHT", -110, 12)
+    -- self:MoveRegion(FocusFrameHealthBar.LeftText, "LEFT", FocusFrame, "LEFT", 8, 12)
+    -- self:MoveRegion(FocusFrameHealthBar.TextString, "CENTER", FocusFrame, "CENTER", -51, 12)
 
-    --self:MoveRegion(FocusFrameManaBar.TextString, "CENTER", FocusFrame, "CENTER", -51, -8)
+    -- self:MoveRegion(FocusFrameManaBar.TextString, "CENTER", FocusFrame, "CENTER", -51, -8)
 end
 
 function Core:MovePartyFrameBars()
@@ -247,14 +246,14 @@ function Core:MovePartyFrameBars()
         healthBar:SetHeight(13)
 
         Core:MoveRegion(healthBar, "CENTER", frame, "CENTER", 16, 4)
-        --Core:MoveRegion(healthBar.TextString, "CENTER", healthBar, "CENTER", 0, 0)
-        --Core:MoveRegion(healthBar.RightText, "RIGHT", frame, "RIGHT", -12, 4)
-        --Core:MoveRegion(healthBar.LeftText, "LEFT", frame, "LEFT", 46, 4)
+        -- Core:MoveRegion(healthBar.TextString, "CENTER", healthBar, "CENTER", 0, 0)
+        -- Core:MoveRegion(healthBar.RightText, "RIGHT", frame, "RIGHT", -12, 4)
+        -- Core:MoveRegion(healthBar.LeftText, "LEFT", frame, "LEFT", 46, 4)
 
         Core:MoveRegion(manaBar, "CENTER", frame, "CENTER", 16, -8)
-        --Core:MoveRegion(manaBar.TextString, "CENTER", manaBar, "CENTER", 0, 0)
-        --Core:MoveRegion(manaBar.RightText, "RIGHT", frame, "RIGHT", -12, -8)
-        --Core:MoveRegion(manaBar.LeftText, "LEFT", frame, "LEFT", 46, -8)
+        -- Core:MoveRegion(manaBar.TextString, "CENTER", manaBar, "CENTER", 0, 0)
+        -- Core:MoveRegion(manaBar.RightText, "RIGHT", frame, "RIGHT", -12, -8)
+        -- Core:MoveRegion(manaBar.LeftText, "LEFT", frame, "LEFT", 46, -8)
     end)
 end
 
@@ -267,9 +266,9 @@ function Core:MoveBossFrameBars()
         healthBar:SetHeight(27)
 
         Core:MoveRegion(healthBar, "TOPRIGHT", frame, "TOPRIGHT", -106, -25)
-        --Core:MoveRegion(healthBar.TextString, "CENTER", frame, "CENTER", -50, 12)
-        --Core:MoveRegion(healthBar.RightText, "RIGHT", frame, "RIGHT", -110, 12)
-        --Core:MoveRegion(healthBar.LeftText, "LEFT", frame, "LEFT", 8, 12)
+        -- Core:MoveRegion(healthBar.TextString, "CENTER", frame, "CENTER", -50, 12)
+        -- Core:MoveRegion(healthBar.RightText, "RIGHT", frame, "RIGHT", -110, 12)
+        -- Core:MoveRegion(healthBar.LeftText, "LEFT", frame, "LEFT", 8, 12)
     end)
 end
 
